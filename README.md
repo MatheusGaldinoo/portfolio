@@ -40,3 +40,21 @@ Sobre, experiência dedicada, IA aplicada, reconhecimentos, contato, estudo de c
 ## Testes de navegador
 
 Com Google Chrome instalado, execute `npm run build` e `npm run test:e2e`. O Playwright inicia e encerra o preview automaticamente. Os testes cobrem cinco larguras (320, 375, 768, 1024 e 1440 px), overflow, console, recursos locais, âncoras, detalhes expansíveis, menu por teclado e movimento reduzido. Capturas são gravadas em `/tmp/portfolio-<largura>.png`. Os testes não verificam a disponibilidade dos destinos externos nem substituem uma auditoria completa WCAG.
+
+## Reformulação completa
+
+A versão atual inclui Sobre, trajetória profissional, Campus Mobile (TeAjudo e BeeThere), IA aplicada, conquistas e contato. As restrições da primeira etapa foram substituídas pela autorização de reformulação.
+
+Paleta ivory cream / royal navy / signal orange; fontes Bowlby One SC e DM Sans. Contribuições sempre visíveis, logos locais, currículo em HTML imprimível, fotografias responsivas e vídeo carregado sob demanda. Configurações: `src/config/media.ts` e `links.ts`. Conteúdo complementar: `src/content/pt-BR/journey.ts`.
+
+Consulte `docs/design-decisions.md` e `docs/media-guide.md`. As ilustrações dos projetos são conceituais em CSS. A integração de geração Higgsfield aguarda autenticação (`/home/matheus-galdino/.local/bin/higgsfield auth login`); nenhuma geração foi realizada. Antes da publicação, revisar legendas do vídeo, domínio/metadados sociais e detalhes adicionais do TeAjudo.
+
+## Revisão editorial atual
+
+Hero fotográfico de ponta a ponta; projetos com status abaixo do título, contribuições abertas e logos sem rótulos visuais. Experiência, formação e IA agrupadas. Campus/DLJ reúne fotos e apresentações. Conquistas reúne olimpíadas, certificações, monitoria inclusiva, letramento digital para idosos e esporte. Currículo e CTAs do Hero foram retirados da interface. Fotos sem zoom de hover ou molduras arredondadas.
+
+Mídias atuais em `src/config/media.ts`; o vídeo TeAjudo aponta para a apresentação DLJ. Respeito a movimento reduzido, sem botão de pausa porque não há animação contínua. A configuração Higgsfield foi concluída; esta revisão utiliza arquivos reais e não gera imagens.
+
+## Organização atual
+
+A navegação fica sobre o Hero, com logos UFCG/VIRTUS e nome sublinhado em laranja. Principais Projetos reúne TwinPulse, Trading Bot e Leal Car’s Stock. BeeThere fica exclusivamente no Campus Mobile/DLJ. A seção de experiência foi retirada. Ícones locais representam stacks, métricas e contatos. A apresentação DLJ usa versão comprimida; o original de 261 MB fica local, ignorado pelo Git. Não há deploy automático associado a esta entrega.

@@ -1,13 +1,33 @@
-# Mídias reais
+# Fotos e vídeos
 
-Nenhum arquivo pessoal foi fornecido. Os blocos atuais são composições tipográficas explicitamente identificadas; não são capturas de aplicações.
+Adicione os arquivos em `public/media/`. JPG, JPEG, PNG e WebP são aceitos diretamente: a extensão na configuração precisa corresponder ao arquivo real. Não renomeie a extensão para converter o formato.
 
-| Mídia | Caminho em public | Tamanho recomendado |
-|---|---|---|
-| Retrato | media/portraits/matheus-galdino.webp | 1600 × 2000 (4:5) |
-| TwinPulse | media/projects/twinpulse.webp | 1920 × 1200 (16:10) |
-| BeeThere | media/projects/beethere.webp | 1080 × 2340 (proporção original preservada) |
-| Leal Car’s Stock | media/projects/leal-cars-stock.webp | 1920 × 1200 (16:10) |
-| Currículo | documents/matheus-galdino-curriculo.pdf | PDF acessível |
+Pastas sugeridas:
+- `portraits/`: retratos.
+- `activities/`: apresentações e maratonas de programação.
+- `campus/`: TeAjudo e BeeThere no Campus Mobile.
+- `recognition/`: medalhas, premiações e natação.
+- `projects/`: capturas reais e autorizadas.
 
-Após adicionar arquivos, atualizar src/config/media.ts e links.ts. A imagem do BeeThere aparece contida em uma moldura horizontal, sem cortar a captura vertical. Não incluir informações privadas em capturas. TwinPulse requer autorização. Otimizar arquivos antes de publicar. Futuramente, adicionar variantes responsivas se as fotografias exigirem tamanhos maiores; a implementação inicial usa dimensões explícitas e lazy loading abaixo do Hero.
+As fotos já enviadas permanecem na raiz de `public/media/`. `src/config/media.ts` mapeia os registros de apresentação, trabalho em equipe, Campus de 2025 e 2026, medalhas e a captura do Leal Car’s Stock. Ajuste o campo `position` para mudar o enquadramento, `alt` para descrição e `available` para disponibilidade. `Photo` trata falhas sem quebrar a composição.
+
+`optimized/` contém versões leves dos JPG/JPEG/PNG da raiz, criadas por `python3 scripts/optimize-media.py` (requer Pillow). O script preserva os originais e produz variantes de 640 e 1440 px. Para arquivos em subpastas, referencie diretamente na configuração ou estenda o script conforme a organização desejada.
+
+O vídeo original do BeeThere é carregado somente ao clicar em “Assistir ao filme”; controles nativos ficam disponíveis. Legendas/transcrição ainda precisam ser fornecidas ou revisadas antes de afirmar acessibilidade completa do conteúdo audiovisual.
+
+Sugestões: retrato 4:5, apresentação 3:2, projetos 16:10, fotos de equipe 3:2. Preserve a resolução original; não é necessário recortar antes de enviar.
+
+TeAjudo: informações atualmente autorizadas são nome, participação e semifinal na 13ª edição. Descrição funcional, tecnologias e demo podem ser acrescentadas quando fornecidas.
+
+O arquivo `TEAjudo-demonstracao.mp4` da raiz foi copiado para `public/media/campus/teajudo-demonstracao.mp4` e incorporado sob demanda. O original e o arquivo maior `video_teajudo_dlj.mp4` foram preservados; este último não é carregado pelo site.
+
+## Referências atualizadas
+
+- Hero: IMG_20260209_184246 (fotografia de apresentação), como fundo de tela inteira.
+- BeeThere: `public/Captura de tela de 2026-11-16 15-26-46-1.png`.
+- TeAjudo: apresentação DLJ em `public/video_teajudo_dlj.mp4`. A demonstração não aparece na página.
+- Bitcoin: PNG local em `public/logos/bitcoin.png`.
+
+A apresentação DLJ tem aproximadamente 261 MB e só é solicitada após o clique. Recomenda-se uma versão comprimida antes da publicação. O arquivo original foi preservado. Legendas/transcrições ainda precisam de revisão.
+
+A página usa agora `public/media/campus/teajudo-dlj-web.mp4`, derivado H.264/AAC em 720p do original DLJ. O original local e demonstrações retiradas da interface são ignorados pelo Git. TwinPulse aponta para `public/Captura de tela de 2026-11-16 15-50-15.png`. BeeThere aparece apenas no Campus; as fotos redundantes foram retiradas da página, preservando os arquivos.
