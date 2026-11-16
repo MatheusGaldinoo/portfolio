@@ -1,0 +1,8 @@
+import { site } from '../content/pt-BR/site';
+import { links } from '../config/links';
+import { media } from '../config/media';
+import { MediaFrame } from '../components/MediaFrame';
+import { Arrow } from '../components/Arrow';
+export function Hero() {
+  return <section id="inicio" className="hero container" aria-labelledby="hero-title"><div className="hero-copy"><p className="eyebrow">UFCG <span className="eyebrow-divider">/</span> VIRTUS</p><h1 id="hero-title">Matheus Galdino<span className="hero-surname">de Souza<span className="accent">.</span></span></h1><p className="hero-role">{site.role}</p><p className="hero-headline">{site.headline}</p><p className="hero-intro">{site.introduction}</p><div className="hero-actions"><a className="button button--primary" href="#projetos">Ver projetos<Arrow /></a>{links.resume ? <a className="button button--secondary" href={links.resume} download>Baixar currículo<Arrow diagonal /></a> : <span className="unavailable-action">Currículo em breve</span>}</div><div className="social-links">{links.github && <a href={links.github} target="_blank" rel="noopener noreferrer">GitHub ↗<span className="sr-only"> (abre em nova aba)</span></a>}{links.linkedin && <a href={links.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗<span className="sr-only"> (abre em nova aba)</span></a>}</div></div><div className="hero-visual"><MediaFrame asset={media.portrait} variant="portrait" title="MG" caption="Um espaço para a pessoa por trás dos projetos."/><p className="portrait-caption"><span>MATHEUS GALDINO</span><span>Software & pesquisa</span></p></div><ul className="hero-specialties" aria-label="Especialidades">{site.specialties.map((item, index) => <li key={item}><span>0{index + 1}</span>{item}</li>)}</ul></section>;
+}

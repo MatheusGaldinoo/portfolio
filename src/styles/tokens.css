@@ -1,0 +1,27 @@
+@theme {
+  --color-paper: #f7f6f2;
+  --color-surface: #ffffff;
+  --color-ink: #17191c;
+  --color-muted: #62666b;
+  --color-accent: #244bdb;
+  --color-accent-active: #1c3cb3;
+  --color-line: #e4e5e7;
+  --color-control: #747980;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --spacing: 0.25rem;
+  --radius-control: 0.5rem;
+  --radius-media: 0.75rem;
+  --shadow-floating: 0 8px 24px rgb(23 25 28 / 8%);
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+}
+:root {
+  --space-1: 0.5rem; --space-2: 1rem; --space-3: 1.5rem; --space-4: 2rem;
+  --space-6: 3rem; --space-8: 4rem; --space-12: 6rem; --space-16: 8rem;
+  --transition-fast: 180ms ease;
+  --transition-medium: 300ms ease;
+  --container: 80rem;
+}
