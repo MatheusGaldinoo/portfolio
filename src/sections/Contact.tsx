@@ -1,0 +1,3 @@
+import { links } from '../config/links';
+import { Icon } from '../components/Icon';
+export function Contact(){return <footer id="contato" className="contact-section navy-section"><div className="container"><h2>Contato</h2><a className="contact-email" href={links.email}><Icon name="mail"/>matheus.galdino.souza@ccc.ufcg.edu.br</a><div className="contact-links"><a href={links.linkedin} target="_blank" rel="noopener noreferrer"><img src="/icons/linkedin.svg" alt="" width="24" height="24"/>LinkedIn ↗</a><a href={links.github} target="_blank" rel="noopener noreferrer"><img src="/icons/github.svg" alt="" width="24" height="24"/>GitHub ↗</a><a href={links.phone}><Icon name="phone"/>(83) 9 9162-3789</a></div></div></footer>}

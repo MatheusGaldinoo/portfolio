@@ -1,6 +1,6 @@
-// Preencha com os endereços reais. Valores ausentes não geram links fictícios.
-export const links: { github: string | null; linkedin: string | null; resume: string | null } = {
-  github: null,
-  linkedin: null,
-  resume: null, // Ex.: '/documents/matheus-galdino-curriculo.pdf'
+export const links = {
+  github: 'https://github.com/MatheusGaldinoo',
+  linkedin: 'https://www.linkedin.com/in/math-galdino',
+  email: 'mailto:matheus.galdino.souza@ccc.ufcg.edu.br',
+  phone: 'tel:+5583991623789',
 };
