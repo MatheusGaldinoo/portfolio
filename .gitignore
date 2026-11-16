@@ -5,3 +5,10 @@ dist/
 !.env.example
 test-results/
 playwright-report/
+.taste-skill/chrome*/
+.taste-skill/gate/
+# Originais locais de vídeo; versão web comprimida é versionada.
+/public/video_teajudo_dlj.mp4
+/public/TEAjudo-demonstracao.mp4
+/public/media/campus/teajudo-demonstracao.mp4
+.taste-skill/
