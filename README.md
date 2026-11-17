@@ -58,3 +58,14 @@ Mídias atuais em `src/config/media.ts`; o vídeo TeAjudo aponta para a apresent
 ## Organização atual
 
 A navegação fica sobre o Hero, com logos UFCG/VIRTUS e nome sublinhado em laranja. Principais Projetos reúne TwinPulse, Trading Bot e Leal Car’s Stock. BeeThere fica exclusivamente no Campus Mobile/DLJ. A seção de experiência foi retirada. Ícones locais representam stacks, métricas e contatos. A apresentação DLJ usa versão comprimida; o original de 261 MB fica local, ignorado pelo Git. Não há deploy automático associado a esta entrega.
+
+
+## Revis?o final do portf?lio ? 2026-11-17
+
+Hero com retrato original, nome em Manrope (Matheus creme, Galdino laranja) e assinatura animada em azul escuro. A pr?via de rolagem acontece ap?s a assinatura, respeita movimento reduzido e cancela com intera??o. Proof strip abaixo do hero: UFCG, VIRTUS e Campus Mobile, com texto antes das logos.
+
+Projetos: TwinPulse, Crypto Trading Bot, WhatsApp Chatbot e BeeThere. T?tulo visual da se??o e numera??es removidos; Leal e TeAjudo fora da interface. Textos ? esquerda, m?dias ? direita no desktop. Mockups retos de MacBook e iPhone com os dois celulares de dimens?es iguais e v?deos sem recorte. Fotos usam arquivos originais; VIRTUS usa SVG. Foto medalha-opi atualizada, recortada ? altura do texto adjacente no desktop. Se??o Como trabalho inclui ciclos ?geis, colabora??o e programa??o com agentes. Contatos usam logos Gmail/WhatsApp e mant?m contraste no hover.
+
+Demonstra??o do chatbot: 65 segundos, resolu??o 1220?2712, sem ?udio, digita??o acelerada em trechos selecionados e desfoque restrito ? regi?o do nome do grupo. Trecho de navega??o por outros chats removido. Original preservado em `private-media/`, ignorado pelo Git e fora de `public/`. Para reeditar: `powershell -ExecutionPolicy Bypass -File scripts/edit-chatbot.ps1` (Python e imageio-ffmpeg necess?rios). Apenas o v?deo editado e o poster s?o distribu?dos.
+
+Entrega local; publica??o n?o realizada. Valida??o: build TypeScript/Vite e su?te Playwright responsiva.

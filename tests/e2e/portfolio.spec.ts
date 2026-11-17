@@ -9,7 +9,7 @@ for (const width of [320, 375, 768, 1024, 1440]) {
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Matheus');
-    await expect(page.locator('#projetos article')).toHaveCount(3);
+    await expect(page.locator('#projetos article')).toHaveCount(4);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
     expect(overflow).toBe(false);
     if (await page.getByRole('button', { name: 'Menu', exact: true }).isVisible()) await page.getByRole('button', { name: 'Menu', exact: true }).click();
@@ -19,7 +19,7 @@ for (const width of [320, 375, 768, 1024, 1440]) {
     await expect(page.getByText('Segurança na execução de código com Bubblewrap e integração de serviços.')).toBeVisible();
     for (const photo of await page.locator('.photo img').all()) { await photo.scrollIntoViewIfNeeded(); await expect.poll(() => photo.evaluate(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0)).toBe(true); }
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
-    await page.screenshot({ path: `/tmp/portfolio-${width}.png`, fullPage: true });
+    await page.screenshot({ path: `test-results/portfolio-${width}.png`, fullPage: true });
     expect(errors).toEqual([]);
   });
 }
@@ -42,20 +42,41 @@ test('prefere movimento reduzido e preserva os detalhes', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('auto');
+  await page.waitForTimeout(2100);
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
   await expect(page.getByRole('link', { name: 'Explorar protótipo' })).toHaveAttribute('href', 'https://appeal-icing-05038539.figma.site');
-  await expect(page.getByRole('link', { name: 'Visitar aplicação' })).toHaveAttribute('href', 'https://cars-stock.vercel.app');
+});
+
+test('identidade do Hero, motion de rolagem e contraste no contato', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await page.evaluate(() => document.fonts.ready);
+
+  await expect(page.locator('.name-first')).toHaveCSS('color', 'rgb(245, 240, 230)');
+  await expect(page.locator('.name-last')).toHaveCSS('color', 'rgb(244, 92, 40)');
+  await expect(page.locator('.hero-scroll')).toHaveCount(0);
+  await page.waitForTimeout(2800);
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(30);
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
+  await page.screenshot({ path: 'test-results/hero-final.png' });
+
+  const heroNameTop = await page.locator('#hero-title').evaluate(element => element.getBoundingClientRect().top);
+  expect(heroNameTop).toBeLessThan(220);
+
+  const linkedIn = page.locator('.contact-links a').filter({ hasText: 'LinkedIn' });
+  await linkedIn.scrollIntoViewIfNeeded();
+  await linkedIn.hover();
+  await expect(linkedIn).toHaveCSS('color', 'rgb(244, 92, 40)');
 });
 
 test('Campus, fotos, contatos e vídeo sob demanda', async ({ page }) => {
  await page.goto('/');
- await expect(page.locator('#campus')).toContainText('TeAjudo');
- await expect(page.locator('#campus')).toContainText('BeeThere');
- await expect(page.locator('#campus video')).toHaveCount(0);
+ await expect(page.locator('#projetos')).not.toContainText('TeAjudo');
+ await expect(page.locator('#projetos')).toContainText('BeeThere');
+ await expect(page.locator('#beethere video')).toHaveCount(0);
  await page.getByRole('button', {name:'Reproduzir apresentação do BeeThere'}).click();
- await expect(page.locator('#campus video')).toBeVisible();
- await page.getByRole('button',{name:'Reproduzir apresentação do TeAjudo no DLJ'}).click();
- await expect(page.getByLabel('apresentação do TeAjudo no DLJ')).toBeVisible();
- await expect.poll(() => page.getByLabel('apresentação do TeAjudo no DLJ').evaluate(el => (el as HTMLVideoElement).videoWidth), { timeout: 15000 }).toBeGreaterThan(0);
+ await expect(page.locator('#beethere video')).toBeVisible();
  await expect(page.locator('#contato a').first()).toHaveAttribute('href','mailto:matheus.galdino.souza@ccc.ufcg.edu.br');
  await expect(page.locator('.motion-control')).toHaveCount(0);
  await expect(page.getByRole('link',{name:/currículo/i})).toHaveCount(0);
