@@ -1,8 +1,10 @@
+import { ProofStrip } from './sections/ProofStrip';
+import { WorkingAtVirtus } from './sections/WorkingAtVirtus';
+
 import { useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './sections/Hero';
 import { FeaturedProjects } from './sections/FeaturedProjects';
-import { Campus } from './sections/Campus';
 import { Recognition } from './sections/Recognition';
 import { Contact } from './sections/Contact';
 export default function App() {
@@ -12,5 +14,5 @@ export default function App() {
  const request=()=>{if(!frame)frame=requestAnimationFrame(update);};update();addEventListener('scroll',request,{passive:true});addEventListener('resize',request);preference.addEventListener('change',request);
  return()=>{cancelAnimationFrame(frame);removeEventListener('scroll',request);removeEventListener('resize',request);preference.removeEventListener('change',request);};
  },[]);
- return <div className="portfolio"><a href="#conteudo" className="skip-link">Pular para o conteúdo</a><Navbar/><main id="conteudo"><Hero/><FeaturedProjects/><Campus/><Recognition/></main><Contact/></div>;
+ return <div className="portfolio"><a href="#conteudo" className="skip-link">Pular para o conteúdo</a><Navbar/><main id="conteudo"><Hero/><ProofStrip/><FeaturedProjects/><WorkingAtVirtus/><Recognition/></main><Contact/></div>;
 }

@@ -1,6 +1,6 @@
 @theme {
- --color-paper: #f5f0e6; --color-surface: #fffaf0; --color-ink: #142449; --color-muted: #454c5a;
- --color-accent: #f45c28; --color-accent-active: #b93610; --color-line: #cfc9bd; --color-control: #687083;
+ --color-paper: #f5f0e6; --color-surface: #e8edf4; --color-ink: #142449; --color-muted: #142449;
+ --color-accent: #f45c28; --color-accent-active: #142449; --color-line: #142449; --color-control: #142449;
  --font-heading: 'Bowlby One SC', sans-serif; --font-body: 'DM Sans Variable', sans-serif;
  --spacing: .25rem; --radius-control: 999px; --radius-media: 1rem;
  --breakpoint-sm:40rem; --breakpoint-md:48rem; --breakpoint-lg:64rem; --breakpoint-xl:80rem;
