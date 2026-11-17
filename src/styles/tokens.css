@@ -1,8 +1,8 @@
 @theme {
  --color-paper: #f5f0e6; --color-surface: #e8edf4; --color-ink: #142449; --color-muted: #142449;
- --color-accent: #f45c28; --color-accent-active: #142449; --color-line: #142449; --color-control: #142449;
+ --color-accent: var(--orange); --color-accent-active: #142449; --color-line: #142449; --color-control: #142449;
  --font-heading: 'Bowlby One SC', sans-serif; --font-body: 'DM Sans Variable', sans-serif;
  --spacing: .25rem; --radius-control: 999px; --radius-media: 1rem;
  --breakpoint-sm:40rem; --breakpoint-md:48rem; --breakpoint-lg:64rem; --breakpoint-xl:80rem;
 }
-:root { --container: 112rem; --transition-fast:180ms ease; --cream:#f5f0e6; --navy:#142449; --orange:#f45c28; }
+:root { --container: 112rem; --transition-fast:180ms ease; --cream:#f5f0e6; --navy:#142449; --orange:#f45c28; --twinpulse-ground:#153e4b; --chatbot-ground:#123d32; }

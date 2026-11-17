@@ -1,5 +1,19 @@
 # Registro real do desenvolvimento assistido
 
+- Removidos dados de experiência e IA sem consumidores, estilos da faixa antiga e o processamento de parallax sem elementos correspondentes. Hero ganhou cards e pontuação; TEAjudo concentra o relato em design inclusivo e pitch, com a apresentação abaixo. A seção de trabalho usa o PNG integral fornecido.
+
+- Hero com logos, graduação em andamento, zoom discreto e prévia dos projetos. TEAjudo detalha o trabalho de produto e pitch. Imagem social PNG de 1200 × 630 usa a foto original, com metadados Open Graph e Twitter. Trading Bot ganhou texto mais largo e ícone revelado na rolagem; laptop ampliado é centralizado dentro do TwinPulse.
+
+- Destaques passaram para o hero e substituíram a prévia por rolagem. TwinPulse usa azul escuro em OKLCH; o laptop mantém a expansão na saída e recua ao voltar pela rolagem. Medalhas usam o nome da colocação alinhado à direita.
+
+- Removidos o CTA do BeeThere, Campus, MediaFrame, SectionHeading, estilos do diálogo de captura e fontes Manrope e Space Grotesk sem uso. O hero pré-carrega o mesmo WOFF2 usado pelo CSS e preserva a prévia após a rúbrica. O laptop ganhou área útil de tela e animação sem espaçador na grade. A foto de trabalho recebeu recorte responsivo sem alterar o arquivo.
+
+- Restaurados seletivamente a partir de `593e7c4`: laranja #f45c28, ritmo da prévia dos destaques, composição de criptomoedas, ícones de medalha e fundos creme. Preservada a correção da prévia para telas baixas. Reativado o laptop do TwinPulse com GSAP. A capa do TEAjudo foi extraída do último frame do MP4 em PNG, sem recompressão do vídeo.
+
+- Projetos organizados na grade do chatbot, com stack na base e fundos reaproveitados da paleta. TEAjudo ganhou dois bullets com fatos já registrados. Conquistas passaram a usar a mesma estrutura de ícone, título e lista. A foto de trabalho recebeu um recorte panorâmico. O monograma animado deu lugar a zoom lento; a prévia passou a usar a posição real dos destaques e a altura visível do navegador.
+
+- Revisão com Frontend Design e Impeccable: abertura com monograma e painéis, BeeThere em carvão, TwinPulse em azul-petróleo, texto de projetos ampliado e stack mais compacta. Ajustes de largura preservam a navegação vertical.
+
 ## 2026-11-16 — Planejamento e primeira implementação
 
 O usuário forneceu trajetória, projetos, métricas, restrições e direção visual. A primeira resposta foi um planejamento sem implementação. Depois, o usuário autorizou somente setup React/TypeScript/Vite/Tailwind, tokens, navegação, Hero e projetos, citando Pomo e Uvra como preferências.
@@ -78,3 +92,37 @@ Projetos: TwinPulse, Crypto Trading Bot, WhatsApp Chatbot e BeeThere. T?tulo vis
 Demonstra??o do chatbot: 65 segundos, resolu??o 1220?2712, sem ?udio, digita??o acelerada em trechos selecionados e desfoque restrito ? regi?o do nome do grupo. Trecho de navega??o por outros chats removido. Original preservado em `private-media/`, ignorado pelo Git e fora de `public/`. Para reeditar: `powershell -ExecutionPolicy Bypass -File scripts/edit-chatbot.ps1` (Python e imageio-ffmpeg necess?rios). Apenas o v?deo editado e o poster s?o distribu?dos.
 
 Entrega local; publica??o n?o realizada. Valida??o: build TypeScript/Vite e su?te Playwright responsiva.
+
+Temas invertidos: proof strip creme com texto navy; projetos navy com textos creme, divisórias claras e acentos laranja. TwinPulse acompanha o fundo da seção.
+
+Como trabalho: fotos originais virtus-predio.png e ufcg-predio.png à direita do texto, inteiras e sem compressão; faixa de ferramentas Antigravity (SVG oficial), Git e Docker. Layout empilhado no celular.
+
+Revisão editorial: fontes consultadas — chat Perfis de IA e currículos locais curriculo-matheus-galdino.pdf / curriculo_matheus_galdino (3).pdf. Textos estruturados como resultado/evidência/ação, sem novas métricas. Cada projeto lista cinco tecnologias/ferramentas com nomes visíveis (sem logos inventadas para ferramentas sem asset). Fundos alternam navy/creme; acentos identificam os projetos. Prédios retirados da interface; Como trabalho dividido em colaboração e agentes. Arquivos originais preservados.
+
+BeeThere: fundo original background-section-beethere.jpg em largura total com contraste creme; capa capa-video-beethere.jpg. Play dos vídeos apenas com ícone, nome preservado no aria-label. Removidas barras dos títulos, ressalvas editoriais e travessões; Pandas aparece uma vez como wordmark acessível.
+
+Hero atualizado com Plus Jakarta Sans, CTA de projetos e laranja #cb8525 amostrado do microfone. Como trabalho cita Scrum, sprint e prompt engineering. Foto da medalha ampliada em 28px; textos aproveitam mais largura. BeeThere volta ao fundo creme; chatbot usa verde escuro. Logos locais Claude, ElevenLabs, LangGraph, Ollama (LobeHub) e Z-API (documentação oficial). Skill greensock/gsap-skills@gsap-scrolltrigger instalada e aplicada: laptop inicia a 45 graus, cresce conforme rolagem com scrub, mantém tela completa e segue à próxima seção; fallback sem animação para movimento reduzido. Desfoque do chatbot desde 58s da edição final em faixas específicas para o nome.
+
+Revisão do mockup: laptop inicia ao lado do texto; ScrollTrigger fixa o grid por 560px, amplia e centraliza a tela, com movimento reduzido e layout estático no mobile. Tela sem bandas, com rolagem interna para conteúdo excedente e ampliação acessível. Teclado com cinco fileiras, teclas deslocadas e barra de espaço. BeeThere amarelo, WhatsApp com descrição creme, celulares à direita e áreas livres pretas. Removida stack de Como trabalho; Scrum, soft skills e Antigravity sublinhados. CTA afastado. Quatro projetos visíveis com cinco contribuições cada, incluindo pitch para investidores informado pelo usuário.
+
+Paleta consolidada: único acento --orange #cb8525 para interface e medalhas; favicon alinhado. Logos oficiais preservam cores próprias. TwinPulse azul-petróleo #153e4b, chatbot verde #123d32 e BeeThere creme. Foto da medalha alinhada ao topo do grid; foto CampusMobile_20260202-226 original abaixo de Como trabalho. Novos sublinhados, CTA mais baixo, celulares deslocados 26px à esquerda e criptomoedas em coluna própria. Selecionado substitui semifinalista; 2× com multiplicador maior. Campus Mobile descrito como programa de inovação e empreendedorismo, com mentoria e capacitação, conforme https://www.institutoclaro.org.br/campus-mobile/sobre/.
+
+Revisão a partir da referência visual: laptop prateado com teclado, alto-falantes e trackpad; rotação inicial nos três eixos converge para posição frontal com ScrollTrigger. Removidos botão, modal de ampliação e marca MacBook Pro. Grid reserva uma altura de tela durante o pin para evitar sobreposição da seção seguinte. TwinPulse e chatbot compartilham largura das colunas de texto. Métricas do bot em três cards. Fotos CampusMobile_20260202-225 e 226 ao lado de cada frente de Como trabalho. CTA com seta SVG para baixo.
+
+
+Revisão editorial: descrições complementam os bullets; bullets do chatbot e trading bot preservados, métricas em cards removidas. BeeThere resumido mantendo cinco contribuições. Skills Incubator detalhado com práticas de comunicação, oratória e priorização fornecidas pelo autor. Título de formação e conquistas reduzido.
+
+
+Como trabalho resumido em dois blocos à esquerda e uma única foto 225 à direita. Categorias acima dos projetos removidas; status usam o laranja único da paleta. TwinPulse usa azul-marinho e creme de Como trabalho, com captura original sem mockup nem animação de laptop.
+
+
+Ajustes de hierarquia: API REST após Git; subtítulos de Como trabalho e marca Claude no laranja da paleta. Como trabalho usa a mesma escala de Formação e conquistas, com descrições em duas colunas e foto abaixo (uma coluna no celular).
+
+
+Proof strip com quebra explícita em Ciência da / Computação; criptomoedas com inclinações alternadas. Textos dos projetos com celular têm altura mínima de 650 px no desktop, preservando expansão para conteúdo. Certificados e extracurriculares recebem ícones vetoriais acessíveis.
+
+
+Revisão com Impeccable: ritmo de 16/28/36 px entre contribuições, descrição e ferramentas; ícones de stack maiores. TwinPulse em creme como variante reversível. Formação e conquistas sem título visual. Prévia pós-rúbrica revela o proof strip e retorna. TEAjudo retorna com apresentação DLJ em destaque. Seleção e contexto Campus Mobile reunidos em um bullet no BeeThere.
+
+
+TEAjudo usa logo fornecida e azul #0872d2 extraído da marca, com Figma na stack. Vídeo existente preservado em HD 1280×720, sem recompressão, exibição limitada a 800px. Projetos alinham conteúdo acima e ferramentas abaixo. Como trabalho reorganizado em texto à esquerda e foto à direita. Z-API identificado visualmente apenas pela logo, com texto alternativo.

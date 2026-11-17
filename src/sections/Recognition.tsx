@@ -1,26 +1,49 @@
 import { achievements } from '../content/pt-BR/journey';
 import { media } from '../config/media';
 import { Photo } from '../components/Photo';
-function Medal({bronze}:{bronze:boolean}) {return <svg className="medal-icon" viewBox="0 0 32 40" width="28" height="36" fill="none" aria-hidden="true"><path d="M6 2h8l7 15-7 4L6 2Z" fill="#f45c28"/><path d="M18 2h8l-8 19-7-4 7-15Z" fill="#142449"/><circle cx="16" cy="26" r="11" fill={bronze?'#f45c28':'#e8edf4'} stroke="currentColor" strokeWidth="1.5"/><circle cx="16" cy="26" r="7.5" stroke="currentColor"/><path d="m16 21 1.4 3 3.4.4-2.5 2.2.7 3.4-3-1.7-3 1.7.7-3.4-2.5-2.2 3.4-.4 1.4-3Z" fill="currentColor"/></svg>}
+
+const groups = [
+  {
+    title: 'Medalhas',
+    icon: 'M8 3h4l2 7m2-7h-4l-2 7m7 5a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z',
+    items: achievements.map(([medal, name]) => ({ name, context: medal })),
+  },
+  {
+    title: 'Cursos',
+    icon: 'M3 5h6a3 3 0 0 1 3 3v12a3 3 0 0 0-3-3H3Zm18 0h-6a3 3 0 0 0-3 3v12a3 3 0 0 1 3-3h6Z',
+    items: [
+      { name: 'Machine Learning', context: 'VIRTUS' },
+      { name: 'Clojure', context: 'UFCG e Nubank' },
+    ],
+  },
+  {
+    title: 'Extracurriculares',
+    icon: 'M15 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 12v-2a6 6 0 0 1 12 0v2M3 17v-1a4 4 0 0 1 3-4m15 5v-1a4 4 0 0 0-3-4',
+    items: [
+      { name: 'Monitoria inclusiva', context: 'Apoio a estudante com TEA' },
+      { name: 'Letramento digital', context: 'Instrutor de pessoas idosas' },
+      { name: 'Jogos Universitários Brasileiros', context: 'Natação pela UFCG' },
+    ],
+  },
+];
+
+
 export function Recognition() {
- return <section id="conquistas" className="recognition-section container">
-    <h2>Curiosidade que vai além.</h2>
+  return <section id="conquistas" className="recognition-section container">
+    <h2 className="sr-only">Formação e conquistas</h2>
     <div className="recognition-grid">
-        <div className="recognition-photo scroll-photo">
-            <Photo asset={media.medal}/></div>
-            <div>
-                <h3>Conquistas acadêmicas</h3>
-                <ul className="awards-list">{achievements.map(([medal,title])=>
-                    <li key={title}><span role="img" aria-label={medal}><Medal bronze={medal==='Bronze'}/></span>
-                    <span>{title}</span></li>)}</ul>
-                    <div className="learning">
-                        <h3>Certificados</h3>
-                        <p>Machine Learning · VIRTUS
-                            <br/>Clojure · NuFuturo / Nubank
-                        </p>
-                            <h3>Também fora da sala de aula</h3>
-                            <p>Monitoria inclusiva: apoio a estudante com TEA.</p>
-                            <p>Instrutor de extensão em letramento digital para idosos.</p>
-                            <p>Jogos Universitários Brasileiros, representando a UFCG.</p>
-                            </div></div></div></section>;
+      <div className="recognition-photo"><Photo asset={media.medal}/></div>
+      <div className="recognition-groups">
+        {groups.map(group => <div className="recognition-group" key={group.title}>
+          <h3 className="recognition-label">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={group.icon}/></svg>
+            {group.title}
+          </h3>
+          <ul>{group.items.map(item => <li key={item.name}>
+            <span>{item.name}</span><span className="recognition-context">{item.context}</span>
+          </li>)}</ul>
+        </div>)}
+      </div>
+    </div>
+  </section>;
 }
