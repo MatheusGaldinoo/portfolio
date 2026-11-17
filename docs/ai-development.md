@@ -1,6 +1,6 @@
 # Registro real do desenvolvimento assistido
 
-- Removidos dados de experiência e IA sem consumidores, estilos da faixa antiga e o processamento de parallax sem elementos correspondentes. Hero ganhou cards e pontuação; TEAjudo concentra o relato em design inclusivo e pitch, com a apresentação abaixo. A seção de trabalho usa o PNG integral fornecido.
+- Removidos dados de experiência e IA sem consumidores, estilos da faixa antiga e o processamento de parallax sem elementos correspondentes. A revisão visual seguinte foi revertida.
 
 - Hero com logos, graduação em andamento, zoom discreto e prévia dos projetos. TEAjudo detalha o trabalho de produto e pitch. Imagem social PNG de 1200 × 630 usa a foto original, com metadados Open Graph e Twitter. Trading Bot ganhou texto mais largo e ícone revelado na rolagem; laptop ampliado é centralizado dentro do TwinPulse.
 

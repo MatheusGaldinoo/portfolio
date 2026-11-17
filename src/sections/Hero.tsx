@@ -40,7 +40,7 @@ export function Hero() {
         <p className="hero-portfolio-label">Portfólio</p>
         <h1 id="hero-title">
           <span className="name-highlight name-first">Matheus</span>{' '}
-          <span className="name-highlight name-last">Galdino<span className="hero-name-period">.</span></span>
+          <span className="name-highlight name-last">Galdino</span>
           <span className="sr-only"> de Souza</span>
         </h1>
         <p className="hero-description">Desenvolvimento de software e pesquisa em inteligência artificial.</p>

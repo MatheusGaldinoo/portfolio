@@ -10,7 +10,9 @@ export function WorkingAtVirtus() {
           <p>Uso Codex, OpenCode e <span className="work-emphasis">Antigravity</span> com <span className="work-emphasis">prompt engineering</span> para organizar contexto e tarefas. Defino critérios de aceite, reviso o código e testo: a validação e a <span className="work-emphasis">responsabilidade pela entrega continuam comigo</span>.</p>
         </div>
       </div>
-      <img className="working-summary__photo" src="/media/CampusMobile_20260202-225.png" alt="Equipe reunida em atividade no Campus Mobile" width="593" height="410" loading="lazy"/>
+      <div className="working-summary__frame">
+        <img className="working-summary__photo" src="/media/CampusMobile_20260202-225.jpeg" alt="Equipe reunida em atividade no Campus Mobile" width="6766" height="4386" loading="lazy"/>
+      </div>
     </div>
   </div></section>;
 }

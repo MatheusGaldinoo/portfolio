@@ -8,8 +8,11 @@ export function TeAjudoProject() {
       <p className="project-status">Protótipo | Nov 2024 a Ago 2025</p>
       <p className="project-description">Aplicativo pensado para conectar pais de crianças com TEA a profissionais de saúde e educação.</p>
       <div className="contributions"><ul>
-        <li>Design inclusivo: desenvolvi em equipe um protótipo móvel no Figma para explorar como famílias de crianças com TEA poderiam encontrar profissionais de saúde e educação. O desafio de UX foi aproximar públicos com necessidades diferentes em uma mesma experiência.</li>
-        <li>Da proposta ao pitch: usei o Business Model Canvas para estruturar a proposta de valor e, com o projeto selecionado na 13ª edição do Campus Mobile, apresentei a ideia em um pitch criativo que exigiu colaboração, comunicação e negociação.</li>
+        <li>Selecionado na 13ª edição do Campus Mobile.</li>
+        <li>Modelei a proposta de valor e o negócio com o Business Model Canvas.</li>
+        <li>Desenvolvi em equipe o protótipo do aplicativo móvel no Figma, com foco em UX, diversidade e inclusão.</li>
+        <li>Apresentei a proposta em um pitch criativo, exercitando comunicação e negociação.</li>
+        <li>Trabalhei gestão de projetos, empreendedorismo e resolução de problemas durante o desenvolvimento do protótipo.</li>
       </ul></div>
       <TechList items={['Figma']}/>
     </div>
