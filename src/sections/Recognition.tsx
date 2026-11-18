@@ -5,7 +5,7 @@ import { Photo } from '../components/Photo';
 const groups = [
   {
     title: 'Medalhas',
-    icon: 'M8 3h4l2 7m2-7h-4l-2 7m7 5a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z',
+    icon: 'M8.5 3H4l5 8.5m6.5-8.5H20l-5 8.5M8.5 3 12 9l3.5-6M17.5 15a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0ZM12 12.5l.75 1.5 1.65.25-1.2 1.2.3 1.65-1.5-.8-1.5.8.3-1.65-1.2-1.2 1.65-.25Z',
     items: achievements.map(([medal, name]) => ({ name, context: medal })),
   },
   {
@@ -30,7 +30,7 @@ const groups = [
 
 export function Recognition() {
   return <section id="conquistas" className="recognition-section container">
-    <h2 className="sr-only">Formação e conquistas</h2>
+    <h2 className="section-title">Formação e conquistas</h2>
     <div className="recognition-grid">
       <div className="recognition-photo"><Photo asset={media.medal}/></div>
       <div className="recognition-groups">

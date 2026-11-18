@@ -1,6 +1,6 @@
 export function WorkingAtVirtus() {
   return <section id="trabalho" className="working-section"><div className="container">
-    <h2 className="sr-only">Como trabalho</h2>
+    <h2 className="section-title">Como trabalho</h2>
     <div className="working-summary">
       <div className="working-summary__copy">
         <div><h3>Planejamento e colaboração</h3>
@@ -11,7 +11,7 @@ export function WorkingAtVirtus() {
         </div>
       </div>
       <div className="working-summary__frame">
-        <img className="working-summary__photo" src="/media/CampusMobile_20260202-225.jpeg" alt="Equipe reunida em atividade no Campus Mobile" width="6766" height="4386" loading="lazy"/>
+        <img className="working-summary__photo" src="/media/CampusMobile_20260202-225.png" alt="Equipe reunida em atividade no Campus Mobile" width="6766" height="4386" loading="lazy"/>
       </div>
     </div>
   </div></section>;
