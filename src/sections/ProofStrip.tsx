@@ -1,7 +1,7 @@
 export function ProofStrip() {
- return <section id="destaques" className="proof-strip" aria-label="Formação e experiência"><div className="container proof-strip__grid">
- <div className="proof-strip__item"><strong>Ciência da Computação</strong><img className="proof-strip__logo proof-strip__logo--ufcg" src="/logos/ufcg.png" alt="UFCG" width="72" height="72"/></div>
- <div className="proof-strip__item"><strong>Pesquisador e Desenvolvedor</strong><img className="proof-strip__logo proof-strip__logo--virtus" src="/logos/virtus.svg" alt="VIRTUS" width="140" height="48"/></div>
- <div className="proof-strip__item"><strong>2× Semifinalista</strong><img className="proof-strip__logo" src="/logos/campus-mobile.png" alt="Campus Mobile" width="112" height="48"/></div>
- </div></section>;
+  return <ul id="destaques" className="hero-facts" aria-label="Formação e experiência">
+    <li><span className="hero-fact-mark"><img src="/logos/ufcg.png" alt="UFCG"/></span><span>Graduando em Ciência da Computação</span></li>
+    <li><span className="hero-fact-mark hero-fact-mark--virtus"><img src="/logos/virtus.svg" alt="VIRTUS"/></span><span>Pesquisador e desenvolvedor</span></li>
+    <li><span className="hero-fact-mark"><img src="/logos/campus-mobile.png" alt="Campus Mobile"/></span><span>2× selecionado</span></li>
+  </ul>;
 }

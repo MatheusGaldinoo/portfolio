@@ -1,14 +1,17 @@
 export function WorkingAtVirtus() {
   return <section id="trabalho" className="working-section"><div className="container">
-    <h2>Como trabalho</h2>
-    <div className="working-grid">
-      <div><h3>Planejamento e colaboração</h3>
-        <p>No VIRTUS, trabalho em ciclos ágeis com planejamento de sprint, acompanhamento das entregas e divisão de responsabilidades entre diferentes frentes do produto.</p>
-        <p>Também participo semanalmente de dinâmicas conduzidas por psicóloga voltadas ao desenvolvimento de comunicação, colaboração, autoconhecimento e trabalho em equipe.</p>
+    <h2 className="section-title">Como trabalho</h2>
+    <div className="working-summary">
+      <div className="working-summary__copy">
+        <div><h3>Planejamento e colaboração</h3>
+          <p>No VIRTUS, trabalho com <span className="work-emphasis">Scrum</span>, planejamento de sprint e responsabilidades compartilhadas. No Skills Incubator, exercito semanalmente <span className="work-emphasis">soft skills</span> com psicóloga: escuta ativa, assertividade, oratória e priorização.</p>
+        </div>
+        <div><h3>Programação com agentes</h3>
+          <p>Uso Codex, OpenCode e <span className="work-emphasis">Antigravity</span> com <span className="work-emphasis">prompt engineering</span> para organizar contexto e tarefas. Defino critérios de aceite, reviso o código e testo: a validação e a <span className="work-emphasis">responsabilidade pela entrega continuam comigo</span>.</p>
+        </div>
       </div>
-      <div><h3>Programação com agentes</h3>
-        <p>Uso Codex, OpenCode e Antigravity para decompor tarefas, organizar o contexto e apoiar a implementação. Defino o objetivo, as restrições e os critérios de aceite de cada etapa, escolhendo o modelo conforme a tarefa.</p>
-        <p>Reviso o código produzido, verifico as decisões e executo testes antes de integrar as mudanças. Os agentes participam do processo; a validação e a responsabilidade pela entrega continuam comigo.</p>
+      <div className="working-summary__frame">
+        <img className="working-summary__photo" src="/media/CampusMobile_20260202-225.png" alt="Equipe reunida em atividade no Campus Mobile" width="6766" height="4386" loading="lazy"/>
       </div>
     </div>
   </div></section>;
