@@ -1,5 +1,21 @@
-import { projects } from '../content/pt-BR/projects';
+import { beethere } from '../content/pt-BR/projects';
 import { videos } from '../config/media';
 import { PhoneMockup } from './PhoneMockup';
 import { TechList } from './TechList';
-export function BeeThereProject(){const project = projects.find(item => item.id === 'beethere')!;return <div className="campus-editions beethere-project"><article id="beethere"><div><h3 className="project-title"><img className="project-logo project-logo--beethere" src="/logos/beethere.svg" alt="" width="48" height="48"/>BeeThere</h3><p className="project-status">Protótipo | Nov 2025 até atualmente</p><p className="project-description">{project.description}</p><ul className="campus-bullets"><li>Selecionado na 14ª edição do Campus Mobile, programa de aceleração de startups, feito pelo Instituto Claro e LSI-TEC (USP).</li>{project.contributions.map(item => <li key={item}>{item}</li>)}</ul><TechList items={['React','TypeScript','Figma','Claude','ElevenLabs']}/></div><PhoneMockup src={videos.beethere} title="apresentação do BeeThere" poster="/media/capa-video-beethere.jpg"/></article></div>;}
+
+export function BeeThereProject() {
+  return (
+    <div className="campus-editions beethere-project">
+      <article id="beethere">
+        <div>
+          <h3 className="project-title"><img className="project-logo project-logo--beethere" src="/logos/beethere.svg" alt="" width="48" height="48"/>{beethere.title}</h3>
+          <p className="project-status">{beethere.status}</p>
+          <p className="project-description">{beethere.description}</p>
+          <ul className="campus-bullets">{beethere.contributions.map(item => <li key={item}>{item}</li>)}</ul>
+          <TechList items={beethere.technologies}/>
+        </div>
+        <PhoneMockup src={videos.beethere} title="apresentação do BeeThere" poster="/media/capa-video-beethere.jpg"/>
+      </article>
+    </div>
+  );
+}
