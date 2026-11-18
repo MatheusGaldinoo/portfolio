@@ -126,3 +126,51 @@ Revisão com Impeccable: ritmo de 16/28/36 px entre contribuições, descrição
 
 
 TEAjudo usa logo fornecida e azul #0872d2 extraído da marca, com Figma na stack. Vídeo existente preservado em HD 1280×720, sem recompressão, exibição limitada a 800px. Projetos alinham conteúdo acima e ferramentas abaixo. Como trabalho reorganizado em texto à esquerda e foto à direita. Z-API identificado visualmente apenas pela logo, com texto alternativo.
+
+## 2026-11-17 — Refatoração com preservação da interface
+
+Referência: estado local do commit `debe327`, sem novas alterações de design. Removidos dados e caminhos de renderização do Leal Car, campos não consumidos dos projetos, componentes de métricas/ícones/seta sem uso, configuração de `srcSet` não utilizada e entradas de stack não exibidas. As mídias originais, os arquivos não rastreados e os scripts de edição foram preservados.
+
+BeeThere e TEAjudo passaram a consumir seus textos e tecnologias de `src/content/pt-BR/projects.ts`, mantendo conteúdo, status, ordem e DOM equivalentes. A animação das criptomoedas saiu dos efeitos globais de App e passou a usar refs locais em `CryptoIllustration`, com o mesmo cálculo de movimento e limpeza de listeners/observer. Removido o tratamento de `.scroll-photo`, que não existia na interface. No laptop, a função de easing é resolvida uma vez, sem mudar os valores ou a sequência da animação.
+
+Limpeza de CSS por inventário de seletores e análise da cascata: 333 seletores sem elementos correspondentes e 369 declarações anteriores sobrescritas pelo mesmo seletor/propriedade/condição foram removidos. Ordem e condições das regras restantes preservadas. `globals.css` passou de 80.021 para 47.362 bytes; o CSS de produção passou de 82,17 para 53,89 kB (gzip: 16,59 para 11,45 kB). TypeScript agora verifica locais e parâmetros não utilizados. README reescrito para documentar o estado atual.
+
+Comparação local em Chrome: dimensões e estilos calculados equivalentes em 320, 375, 768, 1024 e 1440 px. A primeira captura de 1440 px foi idêntica; diferenças residuais nas outras capturas ficaram na rasterização das imagens, sem diferenças de geometria ou estilo. Também foi executada a versão anterior em uma referência temporária para comparar cinco posições de scroll: laptop, texto, Trading Bot e criptomoedas tiveram valores idênticos de posição, tamanho, transformação e opacidade.
+
+Os testes existentes tinham problemas de sincronização: a prévia automática podia interferir no hover, e o teste do laptop media o layout antes de as fontes e o ScrollTrigger estabilizarem, além de esperar opacidade total em um ponto onde ambas as versões já iniciavam a expansão. Os testes passaram a cancelar a prévia por interação antes do hover e a aguardar a atualização da geometria. Adicionadas verificações do ciclo completo da prévia, cancelamento, acesso por âncora, movimento das criptomoedas e troca para movimento reduzido. Nenhuma cor ou animação foi alterada para acomodar expectativas dos testes.
+
+Validação final: `npm run build` aprovado, com TypeScript estrito; 14 testes Playwright aprovados; teste do laptop aprovado também em três repetições para conferir estabilidade; `git diff --check` sem problemas. A comparação final manteve zero diferenças de dimensões e estilos calculados nas cinco larguras.
+
+Entrega local, sem commit, push ou publicação.
+
+### Ajustes solicitados no Hero, trabalho e ícones
+
+Foto de Como trabalho mantida no original `CampusMobile_20260202-225.jpeg` (6766 × 4386), agora inteira: removidas proporções forçadas, posição de recorte e animação de zoom no hover. Os três vínculos do Hero passaram a cards brancos com texto navy; nomes visíveis UFCG, VIRTUS e Campus Mobile retirados por já constarem nas logos, preservando a identificação nos textos alternativos. Ponto preto adicionado após Galdino. Retirados fundo e padding das caixas dos ícones de contato. Ícone de medalhas redesenhado como medalha com estrela e fita, preservando viewBox, traço e cor dos ícones de cursos e extracurriculares. Aplicada a skill Impeccable para refinamento pontual; conferência visual em desktop e mobile, sem alterar outras seções.
+
+Build aprovado e ausência de overflow conferida em cinco larguras. Foto validada também com movimento habilitado: proporção natural, sem transform, scale ou transição; contatos com fundo transparente e padding zero. Na suíte, 13 cenários passaram; o cenário da prévia revelou que o tempo de carregamento consumia parte do relógio de teste. O relógio passou a ser pausado antes da navegação, e esse cenário passou em três repetições. Detector Impeccable executado uma vez: avisos preexistentes sobre Plus Jakarta Sans (escolha expressa do autor) e detalhes do mockup do laptop, preservados fora do escopo desta alteração.
+
+### Laptop como foco da rolagem
+
+Aplicada a skill GSAP ScrollTrigger para fixar a seção TwinPulse após a leitura da descrição (`bottom bottom`). O laptop cresce durante 180–260 px de rolagem e permanece ampliado e centralizado por mais 240–360 px, conforme a altura da janela. O espaço reservado pelo pin mantém o Trading Bot abaixo da seção; somente a primeira linha da galeria recebe esse espaço adicional, preservando as alturas dos outros projetos. Ao sair do pin, o laptop continua ampliado e acompanha a saída da seção; ao subir, a sequência é revertida.
+
+Dimensões limitadas ao viewport e à largura disponível, com centralização que também considera janelas desktop baixas. Pin desativado abaixo de 1101 px de largura, abaixo de 500 px de altura e com movimento reduzido. `matchMedia.revert()` remove o pin e restaura o layout; carregamento da fonte e da captura atualiza as medidas. Conferência visual em 1440×900, 1280×720 e 1440×540, incluindo entrada, destaque, saída e retorno. Testes cobrem permanência na mesma posição entre dois pontos de scroll, ausência de sobreposição e limpeza ao alternar viewport/preferência de movimento.
+
+Validação desta alteração: build TypeScript/Vite aprovado e 15 cenários Playwright aprovados. Entrega local, sem commit ou push.
+
+Cards do Hero atualizados conforme solicitação para vidro fosco escuro: `rgba(15,23,42,.55)`, backdrop blur de 12 px (incluindo prefixo WebKit), borda de 1 px `rgba(255,255,255,.12)` e texto `#f8fafc`. Logos exibidas em branco por filtro CSS para contraste, preservando arquivos originais. Build aprovado e conferência visual em 375 e 1440 px, sem overflow horizontal. Demais edições locais do usuário preservadas.
+
+Restauradas as cores das logos dos cards, com base creme para contraste, e inserida quebra de linha antes de Galdino. Projetos, Como trabalho e Formação e conquistas passaram a ter títulos visíveis de 32 px no estilo de Contato. A prévia mede a posição do título Projetos para revelá-lo inteiro na faixa creme antes de retornar ao Hero. Os cinco subtítulos usam o laranja da paleta sobre fundo azul-marinho. Removida a peça inferior solta do laptop e ampliada a distância de rolagem da transição para 240–340 px, com easing senoidal e o mesmo intervalo de destaque.
+
+
+Removidos os fundos dos subtítulos, dos cards institucionais do Hero e das próprias logos, mantendo as cores originais dos arquivos. Cards recebem deslocamento de 3 px e realce discreto da borda no hover, apenas com ponteiro preciso e sem preferência por movimento reduzido. O gráfico do Trading Bot foi substituído por uma seta ascendente que se desenha na entrada da transição, conectada ao mesmo verde do chatbot. A passagem ocupa o rodapé do Trading Bot, sem sobrepor texto ou stack. Conferência visual em desktop e celular, fundos transparentes confirmados por estilos calculados, build aprovado.
+Validação final: 15 testes Playwright aprovados, incluindo cinco larguras de tela, movimento reduzido, prévia do Hero e transição do laptop. Alterações locais, sem commit ou push.
+
+Removidas a seta ascendente, a faixa curva e a reserva de espaco para a transicao entre Trading Bot e chatbot.
+O cabeçalho Projetos passou a usar Plus Jakarta Sans, tamanho responsivo e um filete sobre a faixa creme. A prévia aguarda o fim real do zoom e da assinatura antes de revelar o título. Os cards receberam um halo creme atrás das logos, mantendo suas cores originais. O TEAjudo saiu da listagem atual, com componente e materiais preservados para reativação.
+O halo individual das logos foi substituído por branco translúcido com desfoque no card inteiro.
+Logos institucionais alinhadas à esquerda no Hero, com ampliação da marca VIRTUS em desktop e celular.
+Corrigido o acionamento da prévia para aceitar #inicio e cliques neutros. O cancelamento passa a identificar controles, teclas de navegação e gestos de rolagem. Promise.allSettled permite concluir a espera mesmo quando uma animação introdutória é cancelada. Testes adicionados para celular e desktop com âncora inicial, clique neutro e cancelamento da assinatura.
+Projetos passou ao estilo tipográfico de Contato, em branco sobre azul escuro, com divisor de 2 px sob o próprio título. Removido o padding inferior de 1 px do contêiner que expunha o fundo creme após o rodapé.
+TwinPulse passou a usar o token navy (#142449), compartilhado com o azul escuro principal da aplicação.
+Removido o sublinhado de Projetos. Cabeçalho integrado ao TwinPulse com menor intervalo vertical e divisor horizontal no estilo da borda de tech-list.
+Entrega consolidada na branch refactor/portfolio em commits Conventional Commits. Build de produção aprovado e suíte completa com 17 testes aprovados em cinco larguras de tela.
