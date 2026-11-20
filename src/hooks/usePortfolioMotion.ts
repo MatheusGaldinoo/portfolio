@@ -34,12 +34,12 @@ export function usePortfolioMotion(main: RefObject<HTMLElement | null>) {
       touchScroll.observe(list);
       const cards = root.querySelectorAll<HTMLElement>('.project-list > *');
       const sizes = new ResizeObserver(entries => {
-        entries.forEach(({ target }) => {
+        entries.forEach(({ target, borderBoxSize }) => {
           const card = target as HTMLElement;
-          card.style.setProperty('--card-height', card.offsetHeight + 'px');
+          card.style.setProperty('--card-height', borderBoxSize[0].blockSize + 'px');
         });
       });
-      cards.forEach(card => sizes.observe(card));
+      cards.forEach(card => sizes.observe(card, { box: 'border-box' }));
       let active = true;
       let detach: (() => void) | undefined;
       if (!CSS.supports('animation-timeline: view()')) {
