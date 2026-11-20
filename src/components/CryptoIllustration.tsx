@@ -31,9 +31,9 @@ export function CryptoIllustration() {
 
   return (
     <div ref={illustration} className="bitcoin-floats" aria-hidden="true">
-      <img src="/logos/bitcoin.png" width="160" height="160" alt=""/>
-      <img className="ethereum-float" src="/icons/ethereum.svg" width="70" height="100" alt=""/>
-      <img className="solana-float" src="/icons/solana.svg" width="90" height="80" alt=""/>
+      <img loading="lazy" src="/logos/bitcoin.png" width="160" height="160" alt=""/>
+      <img loading="lazy" className="ethereum-float" src="/icons/ethereum.svg" width="70" height="100" alt=""/>
+      <img loading="lazy" className="solana-float" src="/icons/solana.svg" width="90" height="80" alt=""/>
     </div>
   );
 }

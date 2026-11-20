@@ -8,7 +8,7 @@ export function BeeThereProject() {
     <div className="campus-editions beethere-project">
       <article id="beethere">
         <div>
-          <h3 className="project-title"><img className="project-logo project-logo--beethere" src="/logos/beethere.svg" alt="" width="48" height="48"/>{beethere.title}</h3>
+          <h3 className="project-title"><img loading="lazy" className="project-logo project-logo--beethere" src="/logos/beethere.svg" alt="" width="48" height="48"/>{beethere.title}</h3>
           <p className="project-status">{beethere.status}</p>
           <p className="project-description">{beethere.description}</p>
           <ul className="campus-bullets">{beethere.contributions.map(item => <li key={item}>{item}</li>)}</ul>
