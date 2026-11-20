@@ -1,0 +1,116 @@
+.featured-projects.container {
+  width: min(calc(100% - 2 * clamp(12px, 3vw, 48px)), 1480px);
+  padding-bottom: clamp(32px, 6vw, 88px);
+}
+
+.featured-projects > .project-list {
+  display: grid;
+  grid-auto-rows: auto;
+  gap: clamp(20px, 3vw, 48px);
+}
+.featured-projects .project-list > * {
+  padding: clamp(24px, 3.5vw, 60px);
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  overflow: clip;
+  --project-height: clamp(480px, 64svh, 680px);
+}
+.featured-projects .project-list > *::before { content: none; }
+.featured-projects :is(.project-crypto, .beethere-project) .project-status { color: #a43713; }
+.featured-projects .project-teajudo .project-status, .featured-projects .project-whatsapp .project-status { color: white; }
+.projects-heading { padding-bottom: 18px; }
+.projects-divider {
+  height: 3px;
+  margin: 0 0 18px;
+  border: 0;
+  background: #3c4864;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.projects-progress { display: block; height: 100%; background: var(--orange); transform-origin: left; }
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .featured-projects .project-list > * {
+    position: sticky;
+    top: min(28px, calc(100svh - var(--card-height, 100svh) - 12px));
+  }
+  .featured-projects .project-list:has(:focus-visible) > * { position: relative; top: auto; }
+}
+@media (max-width: 767px) {
+  .featured-projects .project-list > * { padding: 28px clamp(14px, 4vw, 28px); border-radius: 14px; }
+  .project-list .project-title { overflow-wrap: anywhere; }
+  .navbar { position: relative; }
+  .navbar .navigation, .navbar .navigation.is-open {
+    position: absolute;
+    inset: 100% 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    width: 100%;
+    margin: 0;
+    padding: 16px 24px;
+    background: var(--navy);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 180ms, transform 180ms, visibility 0s 180ms;
+  }
+  .navbar .navigation.is-open { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+}
+.video-frame { position: relative; }
+.video-frame > video, .video-frame > .video-poster { position: absolute; inset: 0; transition: opacity 300ms; }
+.video-frame > video { opacity: 0; }
+.video-frame.is-ready > video { opacity: 1; }
+.video-frame.is-ready > .video-poster { opacity: 0; pointer-events: none; }
+.video-error { padding: 8px; background: var(--navy); color: white; }
+.working-summary__frame { overflow: clip; align-self: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .working-summary__photo { scale: 1.18; transform-origin: bottom; }
+}
+.closing-statement {
+  display: grid;
+  align-items: center;
+  min-height: 58svh;
+  padding-block: clamp(72px, 10vw, 160px);
+  background: var(--navy);
+  color: var(--cream);
+}
+.closing-statement h2 { font-size: clamp(38px, 7vw, 108px); line-height: 1.04; letter-spacing: -.06em; }
+.closing-statement h2 > * { display: block; }
+.closing-statement em { color: var(--orange); font-style: normal; }
+@media (prefers-reduced-motion: reduce) {
+  .projects-divider { position: static; }
+  .projects-progress { display: none; }
+  .navbar .navigation, .video-frame > video, .video-frame > .video-poster { transition: none; }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-full { view-timeline-name: --hero; }
+    .hero-full > .photo {
+      animation: hero-parallax linear both;
+      animation-timeline: --hero;
+      animation-range: exit 0% exit 100%;
+    }
+    .working-summary__frame { view-timeline-name: --team; }
+    .working-summary__photo {
+      animation: team-parallax linear both;
+      animation-timeline: --team;
+    }
+    .featured-projects { timeline-scope: --projects; }
+    .project-list { view-timeline-name: --projects; }
+    .projects-progress {
+      animation: project-progress linear both;
+      animation-timeline: --projects;
+      animation-range: contain;
+    }
+  }
+}
+@keyframes hero-parallax { from { transform: none; } to { transform: translateY(12%); } }
+@keyframes team-parallax { from { transform: none; } to { transform: translateY(8%); } }
+@keyframes project-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (max-width: 767px) and (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  html:has(.project-list[data-touch-scroll]) { scroll-snap-type: y proximity; }
+  .project-list > * { scroll-snap-align: start; }
+}

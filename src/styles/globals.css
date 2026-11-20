@@ -152,10 +152,8 @@ h1,h2{letter-spacing:-.01em}.hero h1{letter-spacing:-.025em}
 .project-twinpulse .project-grid{flex-direction:column}
 .project-twinpulse .project-copy{width:100%;max-width:100%}
 .project-twinpulse .project-visual{width:100%}
-.laptop-sticky{align-items:center;justify-content:center}
 .featured-projects{clip-path:none;box-shadow:none}
-@media(max-width:767px){.project-crypto .project-copy{max-width:100%}.laptop-scroll-scene{height:160vh}.hero-cta{font-size:14px;padding:12px 18px}}
-@media(prefers-reduced-motion:reduce){.laptop-scroll-scene{height:auto}.laptop-sticky{position:relative;height:auto}}
+@media(max-width:767px){.project-crypto .project-copy{max-width:100%}.hero-cta{font-size:14px;padding:12px 18px}}
 
 .project-whatsapp .tech-list img[src$="langgraph.svg"],.project-whatsapp .tech-list img[src$="ollama.svg"]{filter:brightness(0) invert(1)}
 
@@ -173,20 +171,18 @@ h1,h2{letter-spacing:-.01em}.hero h1{letter-spacing:-.025em}
 .project-twinpulse .project-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:5%;align-items:center}
 .project-twinpulse .project-copy{grid-column:1;grid-row:1}
 .project-twinpulse .project-visual{grid-column:2;grid-row:1;order:initial;min-width:0}
-.laptop-scroll-scene{height:auto;perspective:1400px}
-.laptop-sticky{position:relative;top:auto;height:auto;display:block;perspective:1400px}
-.laptop-scroll-scene .laptop-mockup{width:100%;padding:0}
+.laptop-frame{height:auto;perspective:1400px}
+.laptop-frame .laptop-mockup{width:100%;padding:0}
 .laptop-screen{cursor:default}
 .laptop-display{width:100%;overflow:auto}
 .laptop-display img{max-width:none;object-fit:initial}
 .laptop-keyboard{transform:none}.keyboard-row i{flex:1;height:7px!important;border-radius:2px;box-shadow:0 1px 1px #0008,inset 0 1px #ffffff25}.keyboard-row-0 i{height:4px!important}.keyboard-row-2 i:first-child,.keyboard-row-3 i:first-child,.keyboard-row-3 i:last-child{flex:1.6}.keyboard-row .space-key{flex:5}
 .laptop-trackpad{margin-top:6px}
 @media(min-width:768px){.project-whatsapp .project-grid,.campus-editions article#beethere{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.8fr);gap:5%;align-items:center}.project-whatsapp .phone-mockup,#beethere>.phone-mockup.iphone-mockup{margin-left:auto}.campus-editions p:not(.project-status){max-width:none}}
-@media(max-width:1100px){.project-twinpulse .project-grid{display:flex;flex-direction:column;gap:32px}.project-twinpulse .project-visual{width:min(100%,720px)}.laptop-scroll-scene .laptop-mockup{will-change:auto}}
+@media(max-width:1100px){.project-twinpulse .project-grid{display:flex;flex-direction:column;gap:32px}.project-twinpulse .project-visual{width:min(100%,720px)}}
 @media(max-width:767px){.project-whatsapp .project-grid,.campus-editions article#beethere{display:flex;flex-direction:column}.phone-mockup.iphone-mockup,#beethere>.phone-mockup.iphone-mockup{margin-inline:auto}}
-@media(prefers-reduced-motion:reduce){.laptop-scroll-scene .laptop-mockup{will-change:auto}}
 
-.laptop-scroll-scene .laptop-mockup{will-change:auto}
+
 @media(min-width:1101px){.laptop-display{max-height:220px}}
 .hero-cta{margin-top:auto}
 .recognition-photo{transform:none;transform-origin:top;align-self:stretch}
@@ -208,8 +204,8 @@ h1,h2{letter-spacing:-.01em}.hero h1{letter-spacing:-.025em}
  .project-crypto .bitcoin-floats img.ethereum-float{width:32px}
  .project-crypto .bitcoin-floats img.solana-float{width:48px}
 }
-.laptop-scroll-scene,.laptop-sticky{perspective:1800px}
-.laptop-scroll-scene .laptop-mockup{transform:rotateX(18deg) rotateY(-24deg) rotateZ(16deg) scale(.9);transform-origin:center;filter:none}
+
+.laptop-frame .laptop-mockup{transform:none;filter:none}
 .laptop-screen{width:98%;padding:6px 3px 4px;border:1px solid #a9adb1;border-radius:8px 8px 3px 3px;background:#111315;box-shadow:inset 0 0 0 1px #000}
 .laptop-screen::after{box-shadow:inset 0 1px 0 #ffffff24}
 .laptop-camera{width:4px;height:4px;top:2px;background:#33404b;border-radius:50%;box-shadow:0 0 0 1px #050607}
@@ -235,7 +231,6 @@ h1,h2{letter-spacing:-.01em}.hero h1{letter-spacing:-.025em}
  .project-twinpulse .project-grid{display:flex;flex-direction:column}
  .project-twinpulse .project-visual{padding-block:20px}
 }
-@media(prefers-reduced-motion:reduce){.laptop-scroll-scene .laptop-mockup{transform:none}}
 
 @media(min-width:1101px) and (prefers-reduced-motion:no-preference){.project-twinpulse .project-grid{min-height:calc(100svh - 100px)}}
 .recognition-section>h2,.working-section h2{font-size:clamp(28px,3vw,42px);line-height:1.15;letter-spacing:-.035em;white-space:normal}
@@ -373,21 +368,11 @@ html,body{max-inline-size:100%;overflow-x:clip}
   .featured-projects .project-crypto .bitcoin-floats .ethereum-float{inset:2px auto auto 38%;width:36px;rotate:-15deg}
   .featured-projects .project-crypto .bitcoin-floats .solana-float{inset:12px auto auto 66%;width:48px}
 }
-.laptop-scroll-scene .laptop-deck{padding:4px 12% 5px;transform:perspective(550px) rotateX(52deg)}
-.laptop-scroll-scene .laptop-keyboard{gap:1px;padding:2px}
-.laptop-scroll-scene .keyboard-row{gap:2px}
-.laptop-scroll-scene .laptop-keyboard .keyboard-row i{height:4px!important;font-size:0}
-.laptop-scroll-scene .laptop-trackpad{height:10px;margin:3px auto 0}
-.laptop-scroll-scene .laptop-sticky{isolation:isolate}
-@media(min-width:1101px) and (min-height:500px) and (prefers-reduced-motion:no-preference){
-  /* Only TwinPulse reserves the extra scroll; the remaining project rows stay equal. */
-  .featured-projects>.project-list{grid-template-rows:auto}
-  .featured-projects .project-twinpulse{min-height:100svh;clip-path:inset(0 -100vmax)}
-  .featured-projects .project-twinpulse .project-visual{align-self:stretch;position:relative;z-index:1}
-  .laptop-scroll-scene{height:100%;padding-block-start:clamp(90px,17vh,145px)}
-  .laptop-sticky{position:relative;top:auto;z-index:1}
-}
-@media(max-width:1100px),(max-height:499px){.laptop-scroll-scene .laptop-mockup{transform:none}}
+.laptop-frame .laptop-deck{padding:4px 12% 5px;transform:perspective(550px) rotateX(52deg)}
+.laptop-frame .laptop-keyboard{gap:1px;padding:2px}
+.laptop-frame .keyboard-row{gap:2px}
+.laptop-frame .laptop-keyboard .keyboard-row i{height:4px!important;font-size:0}
+.laptop-frame .laptop-trackpad{height:10px;margin:3px auto 0}
 
 .hero-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:650px;max-width:100%;padding:0;margin:24px 0 0;list-style:none}
 .hero-facts li{display:flex;flex-direction:column;align-items:flex-start;gap:12px;min-width:0;padding:16px 18px;background:rgba(255,255,255,.24);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.28);color:#fff;text-shadow:0 1px 4px #142449bf;border-radius:12px;font-size:14px;font-weight:500;line-height:1.4}
