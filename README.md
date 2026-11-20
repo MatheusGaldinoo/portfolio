@@ -1,6 +1,6 @@
 # Portfólio — Matheus Galdino
 
-Portfólio estático em React 19, TypeScript e Vite, com Tailwind CSS 4 para a base de estilos e GSAP/ScrollTrigger para o laptop do TwinPulse. Não há backend nem variáveis de ambiente obrigatórias.
+Portfólio estático em React 19, TypeScript e Vite, com Tailwind CSS 4 para a base de estilos e animações vinculadas à rolagem em CSS, com GSAP/ScrollTrigger em navegadores sem esse suporte. Não há backend nem variáveis de ambiente obrigatórias.
 
 ## Executar
 
@@ -30,7 +30,7 @@ O build verifica TypeScript e gera `dist/`. `npm run typecheck` executa somente 
 - `src/config`: links e referências compartilhadas de mídia.
 - `src/styles/tokens.css` e `globals.css`: tokens, composição, estados e regras responsivas.
 
-O BeeThere tem um componente próprio. O componente e os materiais do TEAjudo permanecem no repositório para reativação futura. Não há campos ou componentes de métricas na apresentação atual.
+BeeThere e TEAjudo têm cards independentes com as respectivas apresentações do Campus Mobile.
 
 ## Interface e movimento
 
@@ -38,17 +38,19 @@ Os cards de vínculos do Hero têm fundo branco translúcido com desfoque, borda
 
 O Hero mostra o retrato, nome em Plus Jakarta Sans, assinatura, vínculos acadêmicos/profissionais e CTA. O laranja principal é `#f45c28`; os projetos mantêm seus fundos atuais, incluindo TwinPulse no azul escuro principal da paleta, chatbot verde e BeeThere creme.
 
-A prévia de rolagem começa após o zoom do retrato e a assinatura, retorna ao Hero e cancela com interação. Ela aceita acesso por #inicio e cliques em áreas neutras. Navegação, rolagem e movimento reduzido cancelam a prévia; âncoras de outras seções não a iniciam. No desktop acima de 1100 px e com pelo menos 500 px de altura, o laptop começa pequeno ao lado da descrição. Após a leitura, a seção fica fixa: ele cresce e permanece centralizado por um trecho adicional de rolagem antes de liberar o Trading Bot. O scroll para cima desfaz a expansão; telas menores e movimento reduzido mantêm a apresentação estática. O componente das criptomoedas controla o deslocamento com a rolagem e respeita a preferência por movimento reduzido.
+A prévia de rolagem começa após o zoom do retrato e a assinatura, retorna ao Hero e cancela com interação. Ela aceita acesso por #inicio e cliques em áreas neutras. Navegação, rolagem e movimento reduzido cancelam a prévia; âncoras de outras seções não a iniciam. A partir de 768 px, os cards se sobrepõem durante a rolagem. Cards altos só se fixam quando a última linha chega à tela. No celular e com movimento reduzido, os cinco projetos seguem o fluxo vertical. Em telas de toque estreitas, a rolagem se alinha por proximidade ao início do card. O laptop permanece estático.
+
+O retrato e a foto de equipe têm parallax. Contribuições, tecnologias e conquistas entram em sequência. A frase “O código começa com uma pergunta.” aparece antes de Contato.
 
 ## Mídias
 
-As imagens exibidas mantêm os arquivos atuais, sem gerar versões otimizadas. A foto de Como trabalho é `CampusMobile_20260202-225.png`, exibida inteira na proporção original, sem recorte nem zoom. Os vídeos carregam sob demanda, após o botão de reprodução. O chatbot usa a demonstração editada.
+O retrato do Hero tem versões WebP de 1024 e 1920 px. A assinatura usa WebP sem perdas, e a marca UFCG tem uma versão dimensionada para o Hero. Os originais estão em `public/`. Os vídeos carregam sob demanda, após o botão de reprodução. O chatbot usa a demonstração editada.
 
 Originais privados de vídeo ficam fora de `public/` e do Git. O script `scripts/edit-chatbot.ps1` mantém o fluxo de edição existente; `scripts/optimize-media.py` é uma ferramenta histórica e não participa do build.
 
 ## Verificação
 
-A suíte cobre 320, 375, 768, 1024 e 1440 px, ausência de overflow, navegação por teclado, carregamento de recursos, hover, reprodução sob demanda, movimento reduzido, prévia do Hero, criptomoedas e transição TwinPulse/Trading Bot. Capturas e relatórios temporários ficam em `test-results/`.
+A suíte cobre 320, 375, 768, 1024 e 1440 px, ausência de overflow, navegação por teclado, carregamento de recursos, hover, reprodução sob demanda, movimento reduzido, prévia do Hero, criptomoedas e empilhamento dos cards com laptop estático. Capturas e relatórios temporários ficam em `test-results/`.
 
 Na refatoração, capturas e estilos calculados da versão anterior são usados como referência local. Não atualizar expectativas visuais apenas para acomodar uma regressão. O histórico das intervenções está em `docs/ai-development.md`.
 

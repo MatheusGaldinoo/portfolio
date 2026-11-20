@@ -9,7 +9,7 @@ for (const width of [320, 375, 768, 1024, 1440]) {
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Matheus');
-    await expect(page.locator('#projetos article')).toHaveCount(4);
+    await expect(page.locator('#projetos article')).toHaveCount(5);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
     expect(overflow).toBe(false);
     if (await page.getByRole('button', { name: 'Menu', exact: true }).isVisible()) await page.getByRole('button', { name: 'Menu', exact: true }).click();
@@ -129,7 +129,7 @@ test('criptomoedas preservam movimento e preferência de movimento reduzido', as
 
 test('Campus, fotos, contatos e vídeo sob demanda', async ({ page }) => {
  await page.goto('/');
- await expect(page.getByRole('heading', { name: 'TEAjudo', exact: true })).toHaveCount(0);
+ await expect(page.getByRole('heading', { name: 'TEAjudo', exact: true })).toHaveCount(1);
  await expect(page.locator('#projetos')).toContainText('BeeThere');
  await expect(page.locator('#beethere video')).toHaveCount(0);
  await page.getByRole('button', {name:'Reproduzir apresentação do BeeThere'}).click();
@@ -148,73 +148,23 @@ test('destaques ficam visíveis no hero mobile', async ({ page }) => {
   await expect(page.locator('#inicio #destaques')).toBeInViewport({ ratio: .95 });
 });
 
-test('TwinPulse mantém o laptop centralizado antes de liberar o Trading Bot', async ({ page }) => {
+test('cards se sobrepõem depois da leitura e o laptop permanece estático', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/#twinpulse');
-  await page.evaluate(() => document.fonts.ready);
-  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
-  const section = page.locator('#twinpulse');
-  const laptop = page.locator('.laptop-mockup');
-  const copy = section.locator('.project-copy');
-  const start = await section.evaluate(element => element.getBoundingClientRect().bottom + scrollY - innerHeight);
-  const jump = async (offset: number) => {
-    await page.evaluate(async y => {
-      scrollTo({ top: y, behavior: 'instant' });
-      await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
-    }, start + offset);
-  };
-  await jump(-200);
-  await expect(copy).toHaveCSS('opacity', '1');
-  const initialWidth = await laptop.evaluate(element => element.getBoundingClientRect().width);
-  await jump(0);
-  await expect(copy).toHaveCSS('opacity', '1');
-  await expect.poll(() => laptop.evaluate(element => element.getBoundingClientRect().width)).toBeLessThan(initialWidth * 1.1);
-
-  await jump(300);
-  await expect.poll(() => laptop.evaluate(element => element.getBoundingClientRect().width)).toBeGreaterThan(initialWidth * 1.5);
-  await expect(copy).toHaveCSS('opacity', '0');
-  const focused = await laptop.boundingBox();
-  expect(focused!.y).toBeGreaterThan(32);
-  expect(focused!.y + focused!.height).toBeLessThan(868);
-  expect(Math.abs(focused!.x + focused!.width / 2 - 720)).toBeLessThan(2);
-  expect(Math.abs(focused!.y + focused!.height / 2 - 450)).toBeLessThan(2);
-  expect(await laptop.evaluate(element => element.querySelector('.laptop-display')!.getBoundingClientRect().height / element.getBoundingClientRect().height)).toBeGreaterThan(.7);
-
-  await jump(500);
-  const held = await laptop.boundingBox();
-  expect(Math.abs(held!.width - focused!.width)).toBeLessThan(1);
-  expect(Math.abs(held!.y - focused!.y)).toBeLessThan(1);
-  expect(await page.locator('#crypto').evaluate(element => element.getBoundingClientRect().top)).toBeGreaterThanOrEqual(900);
-  await expect(page.locator('.pin-spacer > #twinpulse')).toHaveCount(1);
-
-  await jump(900);
-  expect(Math.abs((await laptop.boundingBox())!.width - focused!.width)).toBeLessThan(1);
-  expect(await laptop.evaluate(element => element.getBoundingClientRect().bottom <= document.querySelector('#crypto')!.getBoundingClientRect().top)).toBe(true);
-  await expect(page.locator('#crypto')).toBeInViewport();
-  await jump(500);
-  expect(Math.abs((await laptop.boundingBox())!.y - focused!.y)).toBeLessThan(1);
-  await jump(-200);
-  await expect(copy).toHaveCSS('opacity', '1');
-  await expect.poll(() => laptop.evaluate(element => element.getBoundingClientRect().width)).toBeLessThan(initialWidth * 1.1);
-});
-
-test('TwinPulse remove a fixação em telas menores e com movimento reduzido', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.goto('/#twinpulse');
-  const pin = page.locator('.pin-spacer > #twinpulse');
-  await expect(pin).toHaveCount(1);
+  const first = page.locator('#twinpulse');
+  await expect(first).toHaveCSS('position', 'sticky');
+  await page.locator('#crypto').evaluate(card => scrollBy({ top: card.getBoundingClientRect().top - innerHeight / 2, behavior: 'instant' }));
+  const firstBox = await first.boundingBox();
+  const nextBox = await page.locator('#crypto').boundingBox();
+  expect(firstBox!.y + firstBox!.height).toBeGreaterThan(nextBox!.y);
+  await expect(page.locator('.laptop-mockup')).toHaveCSS('transform', 'none');
+  await expect(first.locator('.project-copy')).toHaveCSS('opacity', '1');
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect(pin).toHaveCount(0);
-  await expect(page.locator('#twinpulse .project-copy')).toHaveCSS('opacity', '1');
-  await expect(page.locator('.laptop-mockup')).toHaveCSS('transform', 'none');
+  await expect(first).toHaveCSS('position', 'relative');
+  await expect(page.locator('#closing-line em')).toHaveCSS('opacity', '1');
+  await page.setViewportSize({ width: 375, height: 700 });
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await expect(pin).toHaveCount(1);
-  await page.setViewportSize({ width: 1024, height: 768 });
-  await expect(pin).toHaveCount(0);
-  await expect(page.locator('.laptop-mockup')).toHaveCSS('transform', 'none');
-  await page.setViewportSize({ width: 1440, height: 450 });
-  await expect(pin).toHaveCount(0);
-  await expect(page.locator('.laptop-mockup')).toHaveCSS('transform', 'none');
+  await expect(first).toHaveCSS('position', 'relative');
 });
 
 for (const width of [375, 1440]) {
@@ -243,3 +193,18 @@ for (const width of [375, 1440]) {
     expect(result.final).toBe(0);
   });
 }
+
+test.describe('rolagem por toque', () => {
+  test.use({ hasTouch: true, viewport: { width: 375, height: 812 } });
+
+  test('permite ler o meio de um card alto e sair da pilha', async ({ page }) => {
+    await page.goto('/');
+    await page.keyboard.press('Escape');
+    await page.locator('#whatsapp .contributions').evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await expect(page.locator('html')).toHaveCSS('scroll-snap-type', /^y(?: proximity)?$/);
+    await expect(page.locator('#whatsapp .contributions')).toBeInViewport();
+    await page.locator('#closing-line').evaluate(el => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await expect(page.locator('#closing-line')).toBeInViewport();
+    await expect(page.locator('html')).toHaveCSS('scroll-snap-type', 'none');
+  });
+});

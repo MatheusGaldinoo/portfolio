@@ -174,3 +174,9 @@ Projetos passou ao estilo tipográfico de Contato, em branco sobre azul escuro, 
 TwinPulse passou a usar o token navy (#142449), compartilhado com o azul escuro principal da aplicação.
 Removido o sublinhado de Projetos. Cabeçalho integrado ao TwinPulse com menor intervalo vertical e divisor horizontal no estilo da borda de tech-list.
 Entrega consolidada na branch refactor/portfolio em commits Conventional Commits. Build de produção aprovado e suíte completa com 17 testes aprovados em cinco larguras de tela.
+
+## 20 de novembro de 2026 — movimento do portfólio
+
+A branch feat/portfolio-motion partiu de origin/main (0df2610). Os cinco projetos ganharam cards independentes. A altura real de cada card determina quando ele pode se fixar na tela. O menu, as capas de vídeo, as listas de contribuições e a frase anterior ao contato ganharam transições. O mockup do TwinPulse passou a ser estático.
+
+As referências visuais foram o empilhamento de Delta Cafés e o parallax de Preymaker, disponíveis na galeria do Details. O retrato ganhou duas versões WebP, e a preferência de movimento reduzido mantém uma leitura linear. A suíte de navegador cobre a sobreposição, a saída da pilha por toque, o acesso por teclado e cinco larguras de tela.
