@@ -1,0 +1,22 @@
+.hero-signature { position: absolute;
+  z-index: 2;
+  right: var(--page-gutter);
+  bottom: 36px;
+  width: 104px;
+  height: auto;
+  transform: rotate(-9deg);
+  pointer-events: none }
+
+.signature-stroke { stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: sign-hero 2.8s linear .6s forwards }
+
+@keyframes sign-hero { to {
+    stroke-dashoffset: 0
+  } }
+
+@media(max-width:767px) { .hero-signature { width: 72px;
+    bottom: 28px } }
+
+@media(prefers-reduced-motion:reduce) { .signature-stroke { animation: none;
+    stroke-dashoffset: 0 } }

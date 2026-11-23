@@ -1,0 +1,41 @@
+.teajudo-grid { display: grid;
+  gap: 6%;
+  align-items: center }
+
+.teajudo-presentation .video-frame { aspect-ratio: 16/9;
+  width: 100%;
+  background: #000 }
+
+.teajudo-presentation .video-frame video { object-fit: contain;
+  width: 100%;
+  height: 100% }
+
+.teajudo-presentation .video-poster>img { object-fit: contain;
+  width: 100%;
+  height: 100% }
+
+@media(max-width:767px) { .teajudo-grid { grid-template-columns: 1fr;
+    gap: 32px } }
+
+.teajudo-grid { align-items: stretch }
+
+.teajudo-grid { grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr) }
+
+.teajudo-presentation { align-self: center }
+
+.teajudo-presentation .video-frame { margin-inline: auto }
+
+@media(max-width:767px) { .teajudo-grid { grid-template-columns: 1fr;
+    gap: 32px } }
+
+.teajudo-grid>* { min-inline-size: 0 }
+
+.teajudo-presentation .video-frame { max-width: 960px }
+
+.teajudo-presentation .video-poster::after { background: color-mix(in srgb, var(--navy) 18%, transparent) }
+
+@media(min-width:768px) { .teajudo-presentation { grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    align-self: center;
+    min-height: 0 } }

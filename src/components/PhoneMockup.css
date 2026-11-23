@@ -1,0 +1,178 @@
+#beethere>.phone-mockup { position: relative;
+  width: min(100%, 340px);
+  justify-self: center;
+  align-self: center }
+
+.phone-mockup:before { content: '';
+  position: absolute;
+  border-radius: 2px;
+  top: 90px;
+  height: 32px }
+
+.phone-mockup:after { content: '';
+  position: absolute;
+  border-radius: 2px;
+  top: 90px;
+  height: 32px }
+
+.phone-mockup:after { top: 110px;
+  height: 48px }
+
+.phone-home { position: absolute;
+  left: 36%;
+  width: 28%;
+  border-radius: 2px }
+
+#beethere .phone-mockup .video-frame { width: 100%;
+  max-width: none;
+  aspect-ratio: 9/16;
+  border-radius: 0;
+  overflow: hidden }
+
+#beethere .phone-mockup video { object-fit: contain }
+
+#beethere .phone-mockup .video-poster>img { object-fit: contain }
+
+#beethere>.phone-mockup { padding: 24px 9px 21px;
+  border: 3px solid #8f959e;
+  border-radius: 36px;
+  background: linear-gradient(110deg, #202937, #0e1623 30%, #2c3543 80%, #151d2a);
+  box-shadow: inset 0 0 0 1px #e6e8eb80, inset 4px 0 5px #ffffff18, 5px 9px 0 -4px #656e7c, 14px 24px 28px color-mix(in srgb, var(--navy) 18%, transparent);
+  transform: rotate(1deg) }
+
+.phone-mockup:before { background: linear-gradient(90deg, #757e8c, #c2c6cc, #555f6e);
+  width: 4px;
+  left: -7px;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--navy) 35%, transparent) }
+
+.phone-mockup:after { background: linear-gradient(90deg, #757e8c, #c2c6cc, #555f6e);
+  width: 4px;
+  left: -7px;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--navy) 35%, transparent) }
+
+.phone-mockup:after { left: auto;
+  right: -7px }
+
+.phone-home { bottom: 9px;
+  height: 3px;
+  background: #c2c6cf;
+  opacity: .8 }
+
+#beethere .phone-mockup .video-frame { outline: 1px solid #050b14;
+  background: #080f1d }
+
+@media(max-width:767px) { #beethere>.phone-mockup { width: min(calc(100% - 12px), 340px) } }
+
+.phone-mockup.iphone-mockup { position: relative;
+  margin-inline: auto;
+  padding: 42px 8px 22px;
+  transform: none;
+  border: 3px solid #b8bbc0;
+  border-radius: 42px;
+  background: #090d14;
+  box-shadow: inset 0 0 0 2px #363c46, 0 0 0 1px #6f7680, 0 22px 30px color-mix(in srgb, var(--navy) 18%, transparent) }
+
+#beethere>.phone-mockup.iphone-mockup { position: relative;
+  margin-inline: auto;
+  padding: 42px 8px 22px;
+  transform: none;
+  border: 3px solid #b8bbc0;
+  border-radius: 42px;
+  background: #090d14;
+  box-shadow: inset 0 0 0 2px #363c46, 0 0 0 1px #6f7680, 0 22px 30px color-mix(in srgb, var(--navy) 18%, transparent) }
+
+.iphone-island { position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65px;
+  height: 17px;
+  border-radius: 20px;
+  background: #020306;
+  box-shadow: 0 0 0 1px #232934 }
+
+.iphone-island i { position: absolute;
+  right: 8px;
+  top: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #344b6e, #080e18 65%) }
+
+.iphone-action { position: absolute;
+  left: -7px;
+  top: 60px;
+  width: 4px;
+  height: 18px;
+  background: #adb2ba;
+  border-radius: 2px }
+
+.iphone-mockup .video-frame { width: 100%;
+  max-width: none;
+  aspect-ratio: var(--video-ratio);
+  border-radius: 0;
+  background: #090d14 }
+
+#beethere .iphone-mockup .video-frame { width: 100%;
+  max-width: none;
+  aspect-ratio: var(--video-ratio);
+  border-radius: 0;
+  background: #090d14 }
+
+.iphone-mockup .video-frame video { object-fit: contain }
+
+.iphone-mockup .video-poster>img { object-fit: contain }
+
+.phone-mockup.iphone-mockup { width: min(calc(100% - 12px), 320px);
+  max-height: 100%;
+  height: auto;
+  display: flex;
+  align-items: center }
+
+#beethere>.phone-mockup.iphone-mockup { width: min(calc(100% - 12px), 320px);
+  max-height: 100%;
+  height: auto;
+  display: flex;
+  align-items: center }
+
+.iphone-mockup .video-frame { flex: 1;
+  max-height: 100%;
+  height: auto;
+  min-width: 0 }
+
+#beethere .iphone-mockup .video-frame { flex: 1;
+  max-height: 100%;
+  height: auto;
+  min-width: 0 }
+
+@media(max-width:767px) { .phone-mockup.iphone-mockup { max-height: min(100%, 440px);
+    height: auto } }
+
+@media(max-width:767px) { #beethere>.phone-mockup.iphone-mockup { max-height: min(100%, 440px);
+    height: auto } }
+
+.phone-mockup.iphone-mockup { background: #000 }
+
+#beethere>.phone-mockup.iphone-mockup { background: #000 }
+
+.iphone-mockup .video-frame { background: #000 }
+
+#beethere .iphone-mockup .video-frame { background: #000 }
+
+.iphone-mockup .video-poster { background: #000 }
+
+.iphone-mockup video { background: #000 }
+
+.iphone-mockup .video-poster::after { display: none }
+
+@media(min-width:768px) { .project-whatsapp .phone-mockup { margin-left: auto } }
+
+@media(min-width:768px) { #beethere>.phone-mockup.iphone-mockup { margin-left: auto } }
+
+@media(max-width:767px) { .phone-mockup.iphone-mockup { margin-inline: auto } }
+
+@media(max-width:767px) { #beethere>.phone-mockup.iphone-mockup { margin-inline: auto } }
+
+@media(min-width:768px) { .project-whatsapp .phone-mockup { margin-right: 36px } }
+
+@media(min-width:768px) { #beethere>.phone-mockup.iphone-mockup { margin-right: 36px } }

@@ -1,0 +1,5 @@
+.glass-cta-border { background: linear-gradient(135deg, rgba(255, 255, 255, .72) 0%, rgba(255, 255, 255, .14) 28%, rgba(255, 255, 255, .03) 50%, rgba(255, 255, 255, .12) 72%, rgba(255, 255, 255, .56) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude; }
