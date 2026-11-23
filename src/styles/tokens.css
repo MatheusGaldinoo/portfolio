@@ -1,8 +1,88 @@
 @theme {
- --color-paper: #f5f0e6; --color-surface: #e8edf4; --color-ink: #142449; --color-muted: #142449;
- --color-accent: var(--orange); --color-accent-active: #142449; --color-line: #142449; --color-control: #142449;
- --font-heading: 'Bowlby One SC', sans-serif; --font-body: 'DM Sans Variable', sans-serif;
- --spacing: .25rem; --radius-control: 999px; --radius-media: 1rem;
- --breakpoint-sm:40rem; --breakpoint-md:48rem; --breakpoint-lg:64rem; --breakpoint-xl:80rem;
+  --color-paper: var(--surface-1);
+  --color-surface: var(--surface-2);
+  --color-ink: var(--text-1);
+  --color-muted: var(--text-2);
+  --color-accent: var(--orange);
+  --color-accent-active: var(--surface-1);
+  --color-line: var(--border-1);
+  --color-control: var(--border-2);
+  --font-heading: "Season Collection", "DM Sans Variable", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --spacing: .25rem;
+  --radius-control: 999px;
+  --radius-media: 1rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
 }
-:root { --container: 112rem; --transition-fast:180ms ease; --cream:#f5f0e6; --navy:#142449; --orange:#f45c28; --twinpulse-ground:var(--navy); --chatbot-ground:#123d32; }
+
+:root {
+  color-scheme: dark;
+  --font-body-weight: var(--font-body-weight-dark);
+  --font-heading-weight: var(--font-heading-weight-dark);
+  --outlined-badge-border-width: 1px;
+  --outlined-badge-font-weight: 600;
+
+  /* Details.so surfaces */
+  --surface-0: hsl(0, 0%, 0%);
+  --surface-1: hsl(20, 14%, 4%);
+  --surface-1-9: hsla(20, 14%, 4%, .95);
+  --surface-1-85: hsl(20, 14%, 4%, .85);
+  --surface-1-7: hsl(20, 14%, 4%, .7);
+  --surface-1-65: hsl(20, 14%, 4%, .65);
+  --surface-1-35: hsl(20, 14%, 4%, .343);
+  --surface-2: hsl(20, 5%, 12%);
+  --favicon-plate-dark-icon: hsl(30, 7%, 90%);
+  --favicon-plate-light-icon: var(--surface-2);
+  --surface-2-9: hsla(20, 5%, 12%, .97);
+  --surface-2-85: hsl(20, 5%, 12%, .85);
+  --surface-2-65: hsl(20, 5%, 12%, .65);
+  --surface-3: hsl(20, 5%, 17%);
+  --surface-3-65: hsla(20, 3%, 12%, .9);
+  --surface-4: hsl(20, 5%, 25%);
+  --scrollbar-thumb: var(--surface-3);
+  --scrollbar-thumb-hover: var(--surface-4);
+  --surface-2-hover: color-mix(in srgb, var(--surface-2) 95%, var(--text-2));
+  --inverted-surface-hover: color-mix(in srgb, var(--text-1) 90%, var(--surface-1));
+  --backdrop-color: rgba(0, 0, 0, .6);
+  --floating-surface-background: hsl(20, 9%, 6%);
+  --workspace-surface-background: var(--floating-surface-background);
+  --floating-surface-2: var(--surface-2);
+  --floating-surface-3: var(--surface-3);
+  --floating-surface-4: var(--surface-4);
+
+  /* Details.so typography & text colors */
+  --text-1: lab(96.5286% -.0991821 .364268);
+  --text-1-2: hsl(0, 0%, 96%, .2);
+  --text-2: lab(66.2166% 1.88044 3.20326);
+  --text-1-5: hsl(0, 0%, 96%, .5);
+  --text-2-3: hsla(0, 0%, 62%, .3);
+  --text-1-8: hsl(0, 0%, 96%, .8);
+
+  /* Details.so accents & status */
+  --accent: #f25500;
+  --accent-10: #f255001a;
+  --accent-50: #f255007a;
+  --status-error: var(--destructive-action);
+  --destructive-action: hsl(5, 68%, 61%);
+  --on-destructive-action: hsl(20, 14%, 4%);
+
+  /* Details.so borders & shadows */
+  --border-1: hsl(30, 6%, 15%);
+  --border-2: hsl(30, 6%, 20%);
+  --border-1-5: hsl(30, 6%, 16%);
+  --box-shadow: 0px 8px 12px 0px hsla(0, 0%, 0%, .04), 0px 0px 1px 0px hsl(0, 0%, 29%);
+  --box-shadow-2: 0px 4px 4px 0px hsla(0, 0%, 0%, 0), 0px 0px 1px 0px hsla(0, 0%, 100%, .432);
+
+  /* Project token mappings */
+  --container: 112rem;
+  --transition-fast: 180ms ease;
+  --white: #ffffff;
+  --navy: #0b0b0b;
+  --ink: #0b0b0b;
+  --orange: #f45c28;
+  --twinpulse-ground: var(--surface-1);
+  --chatbot-ground: #101c18;
+}

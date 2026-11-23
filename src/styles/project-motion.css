@@ -1,46 +1,256 @@
-.featured-projects.container {
-  width: min(calc(100% - 2 * clamp(12px, 3vw, 48px)), 1480px);
-  padding-bottom: clamp(32px, 6vw, 88px);
+.featured-projects {
+  width: 100%;
+  background: var(--navy);
+  padding-bottom: clamp(96px, 12vw, 168px);
 }
 
-.featured-projects > .project-list {
+.featured-projects>.container {
+  width: min(calc(100% - 2 * clamp(12px, 3vw, 48px)), 1480px);
+}
+
+.featured-projects>.container>.project-list {
   display: grid;
   grid-auto-rows: auto;
-  gap: clamp(20px, 3vw, 48px);
+  gap: clamp(24px, 4vw, 56px);
+  background: var(--navy);
+  padding-top: 0;
+  padding-bottom: 0;
 }
-.featured-projects .project-list > * {
-  padding: clamp(24px, 3.5vw, 60px);
-  border: 1px solid var(--color-line);
+
+/* A altura é medida no Trading Bot e aplicada a todos os cards. */
+.featured-projects .project-list>* {
+  padding: clamp(28px, 4vw, 60px);
+  border: 1px solid var(--light-line);
   border-radius: 20px;
   overflow: clip;
-  --project-height: clamp(480px, 64svh, 680px);
+  height: var(--project-card-height, auto);
+  box-shadow: 0 -8px 24px -14px color-mix(in srgb, var(--white) 12%, transparent), 0 18px 36px -12px color-mix(in srgb, var(--navy) 72%, transparent);
+  transition: transform 0.55s ease, box-shadow 0.55s ease;
 }
-.featured-projects .project-list > *::before { content: none; }
-.featured-projects :is(.project-crypto, .beethere-project) .project-status { color: #a43713; }
-.featured-projects .project-teajudo .project-status, .featured-projects .project-whatsapp .project-status { color: white; }
-.projects-heading { padding-bottom: 18px; }
-.projects-divider {
-  height: 3px;
-  margin: 0 0 18px;
-  border: 0;
-  background: #3c4864;
-  position: sticky;
-  top: 0;
-  z-index: 5;
+
+.featured-projects .project-list>* .project-grid,
+.featured-projects .project-list>* .teajudo-grid,
+.featured-projects .project-list .beethere-project article#beethere {
+  height: 100%;
+  min-height: 0;
 }
-.projects-progress { display: block; height: 100%; background: var(--orange); transform-origin: left; }
-@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
-  .featured-projects .project-list > * {
-    position: sticky;
-    top: min(28px, calc(100svh - var(--card-height, 100svh) - 12px));
+
+.featured-projects .project-whatsapp .project-copy,
+.featured-projects #beethere>div:first-child {
+  min-height: 0;
+}
+
+/* Mídias acompanham a altura disponível sem ultrapassar o card. */
+@media (min-width: 768px) {
+
+  .featured-projects .project-visual,
+  .featured-projects .teajudo-presentation,
+  .featured-projects #beethere>.phone-mockup.iphone-mockup {
+    align-self: stretch;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .featured-projects .project-list:has(:focus-visible) > * { position: relative; top: auto; }
+
+  .featured-projects .phone-mockup.iphone-mockup,
+  .featured-projects #beethere>.phone-mockup.iphone-mockup {
+    height: min(560px, calc(100% - 16px));
+    width: auto;
+    max-width: min(100%, 320px);
+    aspect-ratio: 9 / 19.5;
+  }
+
+  .featured-projects .teajudo-presentation .video-frame {
+    width: min(100%, 520px);
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .featured-projects .project-twinpulse .project-visual .photo,
+  .featured-projects .project-twinpulse .project-visual .laptop-frame {
+    width: min(100%, 440px);
+    max-height: calc(100% - 16px);
+  }
+
+  .featured-projects .project-twinpulse .laptop-frame,
+  .featured-projects .project-twinpulse .laptop-mockup,
+  .featured-projects .project-twinpulse .laptop-screen,
+  .featured-projects .project-twinpulse .laptop-display {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .featured-projects .project-twinpulse .laptop-display {
+    overflow: hidden;
+  }
+
+  .featured-projects .project-twinpulse .laptop-display img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .featured-projects .project-twinpulse .project-visual .photo img {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+  }
 }
+
 @media (max-width: 767px) {
-  .featured-projects .project-list > * { padding: 28px clamp(14px, 4vw, 28px); border-radius: 14px; }
-  .project-list .project-title { overflow-wrap: anywhere; }
-  .navbar { position: relative; }
-  .navbar .navigation, .navbar .navigation.is-open {
+
+  .featured-projects .project-visual,
+  .featured-projects .teajudo-presentation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+  }
+
+  .featured-projects .phone-mockup.iphone-mockup,
+  .featured-projects #beethere>.phone-mockup.iphone-mockup {
+    height: clamp(320px, 78vw, 420px);
+    width: auto;
+    max-width: min(100%, 260px);
+    aspect-ratio: 9 / 19.5;
+  }
+
+  .featured-projects .project-whatsapp .project-grid,
+  .featured-projects .teajudo-grid,
+  .featured-projects #beethere {
+    gap: 20px;
+  }
+
+  .featured-projects .project-list>* {
+    padding: 24px clamp(14px, 4vw, 24px);
+  }
+
+  .featured-projects .project-copy,
+  .featured-projects #beethere>div:first-child {
+    padding-bottom: 116px;
+  }
+}
+
+.featured-projects .project-list>*::before {
+  content: none;
+}
+
+/* TwinPulse com tema creme, o mesmo fundo da identidade. */
+.featured-projects .project-twinpulse {
+  --project-ground: var(--white);
+  --project-ink: #142449;
+  --color-muted: #142449;
+  --color-line: #14244944;
+  background: var(--white) !important;
+  color: #142449 !important;
+  border-color: #14244924 !important;
+  box-shadow: 0 -8px 24px -14px rgba(20, 36, 73, 0.14), 0 18px 36px -12px rgba(0, 0, 0, 0.55);
+}
+
+.featured-projects .project-twinpulse .project-title {
+  color: #142449;
+}
+
+.featured-projects .project-twinpulse .project-status {
+  color: var(--orange);
+}
+
+.featured-projects .project-twinpulse .project-description {
+  color: #142449cc;
+}
+
+.featured-projects .project-twinpulse .contributions {
+  color: #142449;
+}
+
+.featured-projects .project-twinpulse .contributions li::marker {
+  color: #142449;
+}
+
+.featured-projects .project-twinpulse .tech-list {
+  border-top-color: #14244933;
+}
+
+.featured-projects .project-twinpulse .tech-list li {
+  color: #142449;
+}
+
+/* Subtítulos dos projetos em laranja */
+.featured-projects .project-status {
+  color: var(--orange) !important;
+}
+
+.projects-heading {
+  padding-top: clamp(24px, 4vw, 40px);
+  padding-bottom: clamp(16px, 2vw, 24px);
+}
+
+.featured-projects .project-list>*:first-child {
+  margin-top: clamp(8vh, 12svh, 16svh);
+}
+
+/* Empilhamento: cada card para um pouco mais abaixo, deixando ver a borda anterior. */
+@media (prefers-reduced-motion: no-preference) {
+  .featured-projects .project-list>* {
+    --stack-peek: 10px;
+    position: sticky;
+    top: calc(14px + var(--stack-index, 0) * var(--stack-peek));
+    z-index: calc(var(--stack-index, 0) + 1);
+  }
+
+  @media (max-width: 767px) {
+    .featured-projects .project-list>* {
+      --stack-peek: 8px;
+      top: calc(10px + var(--stack-index, 0) * var(--stack-peek));
+    }
+  }
+
+  .featured-projects .project-list>*:nth-child(2) {
+    --stack-index: 1;
+  }
+
+  .featured-projects .project-list>*:nth-child(3) {
+    --stack-index: 2;
+  }
+
+  .featured-projects .project-list>*:nth-child(4) {
+    --stack-index: 3;
+  }
+
+  .featured-projects .project-list>*:nth-child(5) {
+    --stack-index: 4;
+  }
+
+  .featured-projects .project-list>*:nth-child(n + 6) {
+    --stack-index: 5;
+  }
+
+  .featured-projects .project-list:has(:focus-visible)>* {
+    position: relative;
+    top: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .featured-projects .project-list>* {
+    padding: 24px clamp(14px, 4vw, 24px);
+    border-radius: 14px;
+  }
+
+  .project-list .project-title {
+    overflow-wrap: anywhere;
+  }
+
+  .navbar {
+    position: relative;
+  }
+
+  .navbar .navigation,
+  .navbar .navigation.is-open {
     position: absolute;
     inset: 100% 0 auto;
     display: flex;
@@ -54,63 +264,264 @@
     visibility: hidden;
     opacity: 0;
     transform: translateY(-8px);
-    transition: opacity 180ms, transform 180ms, visibility 0s 180ms;
+    transition: opacity 320ms ease, transform 320ms ease, visibility 0s 320ms;
   }
-  .navbar .navigation.is-open { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+
+  .navbar .navigation.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
 }
-.video-frame { position: relative; }
-.video-frame > video, .video-frame > .video-poster { position: absolute; inset: 0; transition: opacity 300ms; }
-.video-frame > video { opacity: 0; }
-.video-frame.is-ready > video { opacity: 1; }
-.video-frame.is-ready > .video-poster { opacity: 0; pointer-events: none; }
-.video-error { padding: 8px; background: var(--navy); color: white; }
-.working-summary__frame { overflow: clip; align-self: center; }
-@media (prefers-reduced-motion: no-preference) {
-  .working-summary__photo { scale: 1.18; transform-origin: bottom; }
+
+.video-frame {
+  position: relative;
 }
-.closing-statement {
-  display: grid;
-  align-items: center;
-  min-height: 58svh;
-  padding-block: clamp(72px, 10vw, 160px);
+
+.video-frame>video,
+.video-frame>.video-poster {
+  position: absolute;
+  inset: 0;
+  transition: opacity 600ms ease;
+}
+
+.video-frame>video {
+  opacity: 0;
+}
+
+.video-frame.is-ready>video {
+  opacity: 1;
+}
+
+.video-frame.is-ready>.video-poster {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-error {
+  padding: 8px;
   background: var(--navy);
-  color: var(--cream);
+  color: white;
 }
-.closing-statement h2 { font-size: clamp(38px, 7vw, 108px); line-height: 1.04; letter-spacing: -.06em; }
-.closing-statement h2 > * { display: block; }
-.closing-statement em { color: var(--orange); font-style: normal; }
+
+#trabalho {
+  min-height: 100svh;
+}
+
+.working-summary__frame {
+  overflow: clip;
+  align-self: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .working-summary__photo {
+    scale: 1.18;
+    transform-origin: bottom;
+  }
+}
+
+/* Manifesto de Encerramento: Minimalista, centralizado, revelando letras (cinza para branco) */
+.closing-statement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 62svh;
+  padding-block: clamp(40px, 5vw, 72px);
+  background: var(--white);
+  color: var(--ink);
+  text-align: center;
+}
+
+.closing-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.closing-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3.4vw, 44px);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  margin: 0;
+  display: block;
+  text-align: center;
+  max-width: 760px;
+}
+
+.closing-headline span,
+.closing-headline em {
+  display: inline;
+}
+
+.closing-headline em {
+  color: var(--orange);
+  font-style: normal;
+}
+
+.closing-headline .char {
+  color: var(--ink);
+  display: inline-block;
+}
+
+.closing-headline em .char {
+  color: var(--orange);
+}
+
+/* Footer estilo Hebbia */
+.hebbia-footer {
+  background: var(--surface-0);
+  color: var(--text-1);
+  padding-top: clamp(64px, 8vw, 100px);
+  padding-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-1);
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.footer-title {
+  font-size: clamp(36px, 4.5vw, 60px);
+  margin: 0;
+  letter-spacing: -0.04em;
+  color: var(--text-1);
+}
+
+.contact-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 80px;
+}
+
+.hebbia-footer .contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-1-8);
+  text-decoration: none;
+  min-height: 32px;
+  transition: color 0.18s ease;
+}
+
+.hebbia-footer .contact-link svg {
+  flex-shrink: 0;
+  transition: color 0.18s ease;
+}
+
+.hebbia-footer .contact-link:hover,
+.hebbia-footer .contact-link:focus-visible {
+  color: var(--orange);
+}
+
+/* Marca d'água estilo Hebbia com a mesma largura da linha inferior */
+.footer-watermark-wrap {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin-top: clamp(40px, 5vw, 72px);
+  margin-bottom: 20px;
+  user-select: none;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.footer-watermark {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.footer-watermark text {
+  fill: var(--text-1);
+  opacity: 0.04;
+  font-family: 'Bowlby One SC', sans-serif;
+  font-size: 108px;
+  letter-spacing: 0.02em;
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid var(--border-1);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-2);
+  font-size: 13px;
+}
+
+@media (max-width: 767px) {
+  .footer-top {
+    gap: 16px;
+  }
+
+  .contact-links-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .closing-headline {
+    font-size: 32px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .projects-divider { position: static; }
-  .projects-progress { display: none; }
-  .navbar .navigation, .video-frame > video, .video-frame > .video-poster { transition: none; }
+
+  .navbar .navigation,
+  .video-frame>video,
+  .video-frame>.video-poster {
+    transition: none;
+  }
+
+  .closing-headline .char {
+    color: var(--ink);
+  }
+
+  .closing-headline em .char {
+    color: var(--orange);
+  }
 }
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .hero-full { view-timeline-name: --hero; }
-    .hero-full > .photo {
-      animation: hero-parallax linear both;
-      animation-timeline: --hero;
-      animation-range: exit 0% exit 100%;
+    .working-summary__frame {
+      view-timeline-name: --team;
     }
-    .working-summary__frame { view-timeline-name: --team; }
+
     .working-summary__photo {
       animation: team-parallax linear both;
       animation-timeline: --team;
     }
-    .featured-projects { timeline-scope: --projects; }
-    .project-list { view-timeline-name: --projects; }
-    .projects-progress {
-      animation: project-progress linear both;
-      animation-timeline: --projects;
-      animation-range: contain;
-    }
   }
 }
-@keyframes hero-parallax { from { transform: none; } to { transform: translateY(12%); } }
-@keyframes team-parallax { from { transform: none; } to { transform: translateY(8%); } }
-@keyframes project-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+@keyframes team-parallax {
+  from {
+    transform: none;
+  }
+
+  to {
+    transform: translateY(8%);
+  }
+}
+
 @media (max-width: 767px) and (pointer: coarse) and (prefers-reduced-motion: no-preference) {
-  html:has(.project-list[data-touch-scroll]) { scroll-snap-type: y proximity; }
-  .project-list > * { scroll-snap-align: start; }
+  html:has(.project-list[data-touch-scroll]) {
+    scroll-snap-type: y proximity;
+  }
+
+  .project-list>* {
+    scroll-snap-align: start;
+  }
 }
