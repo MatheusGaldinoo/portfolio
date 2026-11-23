@@ -11,7 +11,7 @@ Pastas sugeridas:
 
 As fotos já enviadas permanecem na raiz de `public/media/`. `src/config/media.ts` mapeia os registros de apresentação, trabalho em equipe, Campus de 2025 e 2026, medalhas e a captura do Leal Car’s Stock. Ajuste o campo `position` para mudar o enquadramento, `alt` para descrição e `available` para disponibilidade. `Photo` trata falhas sem quebrar a composição.
 
-`optimized/` contém versões leves dos JPG/JPEG/PNG da raiz, criadas por `python3 scripts/optimize-media.py` (requer Pillow). O script preserva os originais e produz variantes de 640 e 1440 px. Para arquivos em subpastas, referencie diretamente na configuração ou estenda o script conforme a organização desejada.
+`optimized/` guarda `campus-equipe-6766.webp`, derivado do JPEG original em resolução cheia e qualidade 92, servido via `<picture>` com o JPEG como fallback. Também ficam lá os auxiliares `hero-1024.webp`, `hero-1920.webp`, `rubrica.webp` e `ufcg.webp`. As outras fotografias usam os originais em `public/` e `public/media/`; a logo UFCG consome `ufcg.webp`. `scripts/optimize-media.py` é uma ferramenta histórica que produz variantes de 640 e 1440 px com Pillow e não participa do build.
 
 O vídeo original do BeeThere é carregado somente ao clicar em “Assistir ao filme”; controles nativos ficam disponíveis. Legendas/transcrição ainda precisam ser fornecidas ou revisadas antes de afirmar acessibilidade completa do conteúdo audiovisual.
 
