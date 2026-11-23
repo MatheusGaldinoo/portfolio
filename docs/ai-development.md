@@ -1,5 +1,7 @@
 # Registro real do desenvolvimento assistido
 
+- Corrigida a aplicação da Season Collection: o token `--font-body` usava o nome errado ("Season Colection"), não havia `@font-face` e o Hero ainda forçava Manrope (duas regras: uma já corrigida e outra sobrescrevendo o título com DM Sans); a asserção E2E que esperava Manrope foi ajustada para a fonte real. O WOFF2 variável da versão trial foi hospedado em `public/fonts`, com pré-carregamento no HTML e fallback para DM Sans Variable. O `@font-face` cobre `wght` de 300 a 900; a licença de uso pessoal está registrada em `public/fonts/LICENSE.txt`. O pré-carregamento e a dependência sem uso do Plus Jakarta Sans foram removidos. Conforme definido pelo usuário, a Season Collection passou a ser usada apenas nos títulos (`--font-heading`); o corpo voltou para DM Sans Variable e o Bowlby One SC ficou restrito à marca d'água "MATHEUS GALDINO" do footer, a pedido do usuário. Ainda falta conferir o estágio da variável (Sans/Mix/Serif) com a referência enviada pelo usuário. Para publicação comercial, substituir o arquivo trial por uma versão licenciada.
+
 - Removidos dados de experiência e IA sem consumidores, estilos da faixa antiga e o processamento de parallax sem elementos correspondentes. A revisão visual seguinte foi revertida.
 
 - Hero com logos, graduação em andamento, zoom discreto e prévia dos projetos. TEAjudo detalha o trabalho de produto e pitch. Imagem social PNG de 1200 × 630 usa a foto original, com metadados Open Graph e Twitter. Trading Bot ganhou texto mais largo e ícone revelado na rolagem; laptop ampliado é centralizado dentro do TwinPulse.
@@ -147,7 +149,39 @@ Entrega local, sem commit, push ou publicação.
 
 Foto de Como trabalho mantida no original `CampusMobile_20260202-225.jpeg` (6766 × 4386), agora inteira: removidas proporções forçadas, posição de recorte e animação de zoom no hover. Os três vínculos do Hero passaram a cards brancos com texto navy; nomes visíveis UFCG, VIRTUS e Campus Mobile retirados por já constarem nas logos, preservando a identificação nos textos alternativos. Ponto preto adicionado após Galdino. Retirados fundo e padding das caixas dos ícones de contato. Ícone de medalhas redesenhado como medalha com estrela e fita, preservando viewBox, traço e cor dos ícones de cursos e extracurriculares. Aplicada a skill Impeccable para refinamento pontual; conferência visual em desktop e mobile, sem alterar outras seções.
 
-Build aprovado e ausência de overflow conferida em cinco larguras. Foto validada também com movimento habilitado: proporção natural, sem transform, scale ou transição; contatos com fundo transparente e padding zero. Na suíte, 13 cenários passaram; o cenário da prévia revelou que o tempo de carregamento consumia parte do relógio de teste. O relógio passou a ser pausado antes da navegação, e esse cenário passou em três repetições. Detector Impeccable executado uma vez: avisos preexistentes sobre Plus Jakarta Sans (escolha expressa do autor) e detalhes do mockup do laptop, preservados fora do escopo desta alteração.
+Build aprovado e ausência de overflow conferida em cinco larguras. Foto validada também com movimento habilitado: proporção natural, sem transform, scale ou transição; contatos com fundo transparente e padding zero. Na suíte, 13 cenários passaram; o cenário da prévia revelou que o tempo de carregamento consumia parte do relógio de teste. O relógio passou a ser pausado antes da navegação, e esse cenário passou em três repetições. ## 2026-11-21 — Suavização de Degradê, Enquadramento Hero, Headline e Harmonização de Tons
+
+Ajustes executados:
+1. **Transição do degradê do Hero**:
+   - Ajustada a curva em [globals.css](file:///c:/Users/samue/OneDrive/%C3%81rea%20de%20Trabalho/Computacao/portfolio/src/styles/globals.css) para eliminar qualquer corte brusco com paradas progressivas de transparência (`rgba(0,0,0,1)` até `transparent 100%`).
+2. **Posição da imagem do Hero**:
+   - `object-position` ajustado para `88% 35%` (desktop) e `88% center` (mobile), afastando a pessoa confortavelmente para a direita e integrando-a com a difusão do degradê.
+3. **Seção Headline / Manifesto**:
+   - Altura vertical reduzida para `min-height: 40svh` e espaçamento compacto (`padding-block: clamp(48px, 6vw, 96px)`).
+   - Frase limitada a no máximo duas linhas (`max-width: 900px`, quebra estruturada entre "O código começa" e "com uma pergunta.").
+4. **Harmonização dos tons escuros**:
+   - Fundo base mapeado para o mesmo preto da seção de contatos (`--surface-0: hsl(0, 0%, 0%)`).
+
+Validação:
+- Build de produção gerado com sucesso.
+- 17 testes do Playwright aprovados com 100% de sucesso.
+
+Solicitações atendidas:
+1. **Tema Details.so**: Adaptação dos tokens de design para o esquema de cores escuro oficial de `details.so` (`--surface-0` até `--surface-4`, `--text-1`, `--text-2`, bordas `--border-1`, `--border-2` e sombras de alta fidelidade).
+2. **Hero refinado**:
+   - Remoção dos cards flutuantes sobre a fotografia do Hero.
+   - Gradiente preto cobrindo com solidez quase toda a metade esquerda do Hero (`linear-gradient(90deg, rgba(0,0,0,.98) 0%, rgba(0,0,0,.96) 44%, rgba(0,0,0,.75) 52%, rgba(0,0,0,.2) 68%, transparent 80%)`), garantindo contraste e legibilidade impecáveis para o nome e o subtítulo editorial.
+   - Posicionamento da imagem (`object-position: 78% 35%` no desktop e `78% center` no mobile) deslocando a fotografia ligeiramente à direita para que Matheus fique visível entre 61% e 95% do canvas, sem sofrer cortes na lateral direita e sem ser encoberto pelo gradiente.
+3. **Retorno do Proof Strip**:
+   - Reintegração do `ProofStrip` como faixa horizontal institucional logo abaixo do Hero, com divisórias sutis e logos de UFCG, VIRTUS e Campus Mobile com seus títulos formatados.
+   - Ajuste da prévia de rolagem para animar suavemente até o título de Projetos após a assinatura e retornar.
+4. **Rodapé com marca d'água fluida (estilo Hebbia)**:
+   - Redimensionamento proporcional da marca d'água "MATHEUS GALDINO" para `clamp(24px, 5.6vw, 86px)` com margens de segurança laterais, eliminando completamente qualquer corte das letras iniciais ("Ma") e finais ("no") em telas de 320px a 1440px+.
+
+Validação:
+- `npm run build` aprovado sem erros de bundle ou TypeScript.
+- Suíte completa de 17 testes do Playwright (`npx playwright test`) executada com 100% de sucesso.
+- Verificação visual dos prints nos viewports de 320, 375, 768, 1024 e 1440 px confirmando ausência de overflow ou cortes.
 
 ### Laptop como foco da rolagem
 
@@ -180,3 +214,27 @@ Entrega consolidada na branch refactor/portfolio em commits Conventional Commits
 A branch feat/portfolio-motion partiu de origin/main (0df2610). Os cinco projetos ganharam cards independentes. A altura real de cada card determina quando ele pode se fixar na tela. O menu, as capas de vídeo, as listas de contribuições e a frase anterior ao contato ganharam transições. O mockup do TwinPulse passou a ser estático.
 
 As referências visuais foram o empilhamento de Delta Cafés e o parallax de Preymaker, disponíveis na galeria do Details. O retrato ganhou duas versões WebP, e a preferência de movimento reduzido mantém uma leitura linear. A suíte de navegador cobre a sobreposição, a saída da pilha por toque, o acesso por teclado e cinco larguras de tela.
+
+## 21 de novembro de 2026 — temas alternados e ajustes finais
+
+A marca d’água do rodapé passou a ser um SVG com `textLength`, igualando a largura da linha divisória do contato. O contato trocou as logos de aplicativos por ícones Lucide. O texto de encerramento usa `data-scroll="scrub"` e interpola a cor das letras do cinza amornado para o tom final, preservando a laranja na segunda linha; com movimento reduzido, as cores finais aparecem sem animação. O `usePortfolioMotion` deixou de animar `#closing-line` para não conflitar com o scrub.
+
+A sequência visual agora alterna temas de forma deliberada: Hero escuro, proof strip claro, projetos escuros, Como trabalho claro, conquistas escuras, encerramento claro e rodapé escuro. Para as seções claras, o texto usa `--ink` e o realce usa `--orange`, variante mais escura do laranja para manter contraste AA sobre o creme. Bordas e divisórias dessas seções também usam o azul escuro com baixa opacidade.
+
+Validação local: build de produção aprovado e 18 testes Playwright passaram após os ajustes, incluindo a nova asserção de temas alternados. Nenhuma publicação automática.
+
+## 22 de novembro de 2026 — transições entre seções
+
+Foi experimentado um `src/hooks/sectionTransition01.ts` com `pin` e `reveal`, além dos atributos `data-st-y`, `data-st-opacity` e `data-st-overlay`. O parallax foi removido primeiro a pedido do usuário; depois, o próprio `pin` do Como trabalho e o `reveal` do encerramento passaram a causar falhas antes e depois de conquistas. O usuário escolheu desacoplar a seção, mantendo conteúdo e visual atuais.
+
+Estado final: nenhuma seção do `main` usa `data-st-01`. O hook foi removido, `App` voltou a inicializar apenas `textReveal02` depois de `document.fonts.ready`, e o CSS de transição (`min-height` por atributo, override de `sticky`, pseudo-elemento de fundo e `will-change`) foi retirado. `#trabalho` recebeu `min-height: 100svh` em CSS para preservar a altura que antes vinha do atributo; `.closing-statement` já tinha altura própria. Conquistas segue o fluxo normal, sem z-index injetado, transform, variável `--st-reveal-y` ou `::after` de transição.
+
+Validação local: build de produção aprovado e 18 testes Playwright passaram, incluindo a ausência de `data-st-01` no `main`, a ausência de pseudo-elemento e de variável de reveal em conquistas, `transform` neutro no encerramento e a altura mínima de Como trabalho e do encerramento. Nenhuma publicação automática.
+
+## 22 de novembro de 2026 — Hero alinhado à main, sem cards
+
+O usuário pediu o Hero como na `main`, mantendo só a ausência dos cards, e depois solicitou o CTA abaixo da descrição e a animação de zoom do retrato. `src/components/HeroSignature.tsx` voltou ao conteúdo da `main`. Em `src/sections/Hero.tsx`, o Hero recebeu o CTA “Conheça meus projetos” para `#projetos` e a lógica de prévia da `origin/main`, que espera o zoom do retrato e a assinatura antes de revelar os projetos. O `ProofStrip` de cards não foi incluído.
+
+No CSS, o Hero preserva fundo `#142449` e tipografia `Manrope`/`DM Sans Variable` nesta branch, além do gradiente e enquadramento originais. Foi adicionada a animação `hero-portrait-zoom` com `transform-origin: 68% 40%`, respeitando `prefers-reduced-motion`. Os testes de prévia foram alinhados ao comportamento baseado no zoom.
+
+Validação: `npm run build` aprovado (TypeScript e Vite) e testes Playwright executados localmente. Entrega local, sem commit ou publicação.

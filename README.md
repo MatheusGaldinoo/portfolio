@@ -34,17 +34,17 @@ BeeThere e TEAjudo têm cards independentes com as respectivas apresentações d
 
 ## Interface e movimento
 
-Os cards de vínculos do Hero têm fundo branco translúcido com desfoque, borda discreta, texto claro e hover suave. As logos mantêm as cores originais. Os subtítulos dos projetos são laranja, sem fundo. A prévia revela Projetos em branco sobre azul escuro, com tipografia igual à de Contato e um divisor horizontal no estilo da lista de tecnologias, integrado ao TwinPulse.
+O Hero segue a versão da `main`, sem cards, CTA nem logos de vínculos. Os subtítulos dos projetos são laranja, sem fundo.
 
-O Hero mostra o retrato, nome em Plus Jakarta Sans, assinatura, vínculos acadêmicos/profissionais e CTA. O laranja principal é `#f45c28`; os projetos mantêm seus fundos atuais, incluindo TwinPulse no azul escuro principal da paleta, chatbot verde e BeeThere creme.
+O Hero mostra o retrato, nome em Manrope com fallback para DM Sans, descrição e assinatura sobre fundo azul-marinho `#142449`. O laranja principal é `#f45c28`; os projetos mantêm seus fundos atuais, incluindo TwinPulse no azul escuro principal da paleta, chatbot verde e BeeThere creme.
 
-A prévia de rolagem começa após o zoom do retrato e a assinatura, retorna ao Hero e cancela com interação. Ela aceita acesso por #inicio e cliques em áreas neutras. Navegação, rolagem e movimento reduzido cancelam a prévia; âncoras de outras seções não a iniciam. A partir de 768 px, os cards se sobrepõem durante a rolagem. Cards altos só se fixam quando a última linha chega à tela. No celular e com movimento reduzido, os cinco projetos seguem o fluxo vertical. Em telas de toque estreitas, a rolagem se alinha por proximidade ao início do card. O laptop permanece estático.
+A prévia de rolagem começa após a assinatura, retorna ao Hero e cancela com interação. Movimento reduzido, âncoras e rolagem prévia impedem a prévia. A partir de 768 px, os cards dos projetos se sobrepõem durante a rolagem. Cards altos só se fixam quando a última linha chega à tela. No celular e com movimento reduzido, os cinco projetos seguem o fluxo vertical. Em telas de toque estreitas, a rolagem se alinha por proximidade ao início do card. O laptop permanece estático.
 
-O retrato e a foto de equipe têm parallax. Contribuições, tecnologias e conquistas entram em sequência. A frase “O código começa com uma pergunta.” aparece antes de Contato.
+A foto de equipe tem parallax; o retrato do Hero permanece fixo. Contribuições, tecnologias e conquistas entram em sequência. As seções alternam fundos escuros e claros: Hero em azul-marinho, projetos, conquistas e rodapé em preto; proof strip, Como trabalho e o encerramento em creme. As seções do `main` seguem o fluxo normal de rolagem, sem transições entre blocos. Conquistas mantém o visual e o conteúdo atuais, sem animações nas seções vizinhas; Como trabalho e o encerramento também ocupam no mínimo a altura da viewport. A frase “O código começa com uma pergunta.” revela a cor das letras conforme a rolagem, com o mesmo padrão de scrub de texto do Details.so. O contato usa ícones Lucide em vez de logos de aplicativos, e a marca d’água do rodapé acompanha a largura da linha inferior.
 
 ## Mídias
 
-O retrato do Hero tem versões WebP de 1024 e 1920 px. A assinatura usa WebP sem perdas, e a marca UFCG tem uma versão dimensionada para o Hero. Os originais estão em `public/`. Os vídeos carregam sob demanda, após o botão de reprodução. O chatbot usa a demonstração editada.
+O retrato do Hero usa o JPEG original em `public/`; as versões WebP de 1024 e 1920 px e a assinatura em WebP ficam em `public/media/optimized/` como arquivos auxiliares. O Hero usa a assinatura PNG original com filtro azul-marinho. Os vídeos carregam sob demanda, após o botão de reprodução. O chatbot usa a demonstração editada.
 
 Originais privados de vídeo ficam fora de `public/` e do Git. O script `scripts/edit-chatbot.ps1` mantém o fluxo de edição existente; `scripts/optimize-media.py` é uma ferramenta histórica e não participa do build.
 

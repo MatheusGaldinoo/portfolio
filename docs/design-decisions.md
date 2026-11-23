@@ -2,7 +2,7 @@
 
 Portfólio de engenharia e pesquisa, com prioridade para projetos e contato profissional.
 
-Paleta definida pelo usuário: ivory cream #f5f0e6, royal navy #142449, signal orange #f45c28. A proporção 60/30/10 é uma diretriz de composição aproximada, não uma medição de pixels (fotografias e logos preservam cores próprias).
+Paleta definida pelo usuário: branco #ffffff, royal navy #142449, signal orange #f45c28. A proporção 60/30/10 é uma diretriz de composição aproximada, não uma medição de pixels (fotografias e logos preservam cores próprias).
 
 Bowlby One SC traz uma presença gráfica forte aos títulos; DM Sans dá legibilidade ao corpo. Conteúdo ocupa até 1792 px com margens laterais de 24 px na maior parte do desktop. O Hero é liderado pelo nome e uma fotografia real de apresentação. As fotos de trabalho em equipe e Campus Mobile trazem evidência humana ao longo da página.
 
