@@ -4,7 +4,7 @@ const photo = (file: string, alt: string, width: number, height: number, positio
 });
 export const media = {
   portrait: { src: '/IMG_20260209_184246.jpeg', alt: 'Apresenta\u00e7\u00e3o de projeto com microfone no palco', width: 4000, height: 2646, available: true, position: '50% 35%' },
-  teamwork: photo('CampusMobile_20260202-225', 'Equipe trabalhando em conjunto no Campus Mobile', 6766, 4386),
+  teamwork: { ...photo('CampusMobile_20260202-225', 'Equipe trabalhando em conjunto no Campus Mobile', 6766, 4386, 'center 42%'), webpSrc: '/media/optimized/campus-equipe-6766.webp' },
   coding: photo('CampusMobile_20260202-226', 'Participantes discutindo o projeto em frente ao notebook', 6621, 4414),
   workshop: photo('CampusMobile_20260202-116', 'Atividade de desenvolvimento durante o Campus Mobile', 7008, 4672),
   campus13: photo('IMG-20250213-WA0004', 'Registro de participantes durante a edição de 2025 do Campus Mobile', 3024, 4032),

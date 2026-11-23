@@ -1,6 +1,7 @@
 export type MediaAsset = {
   src: string;
   srcSet?: string;
+  webpSrc?: string;
   alt: string;
   width: number;
   height: number;
