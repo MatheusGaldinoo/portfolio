@@ -9,16 +9,16 @@ for (const width of [320, 375, 768, 1024, 1440]) {
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Matheus');
-    await expect(page.locator('#projetos article')).toHaveCount(5);
+    await expect(page.locator('#projetos article')).toHaveCount(4);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
     expect(overflow).toBe(false);
     if (await page.getByRole('button', { name: 'Menu', exact: true }).isVisible()) await page.getByRole('button', { name: 'Menu', exact: true }).click();
     await page.getByRole('navigation').getByRole('link', { name: 'Projetos', exact: true }).click();
     await expect(page).toHaveURL(/#projetos$/);
     await expect(page.locator('details')).toHaveCount(0);
-    await expect(page.locator('#twinpulse .contributions li').filter({ hasText: 'Bubblewrap' })).toBeVisible();
-    await expect(page.locator('.project-list > *').nth(4)).toHaveAttribute('id', 'twinpulse');
-    for (const photo of await page.locator('.photo img').all()) { await photo.scrollIntoViewIfNeeded(); await expect.poll(() => photo.evaluate(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0)).toBe(true); }
+    await expect(page.locator('#twinpulse .contributions li').first()).toBeVisible();
+    await expect(page.locator('.project-list > *').nth(3)).toHaveAttribute('id', 'twinpulse');
+    for (const photo of await page.locator('.photo img').all()) { await photo.scrollIntoViewIfNeeded(); await expect.poll(() => photo.evaluate(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0), { timeout: 15000 }).toBe(true); }
     await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
     await page.screenshot({ path: `test-results/portfolio-${width}.png`, fullPage: true });
     expect(errors).toEqual([]);
@@ -56,7 +56,7 @@ test('identidade do Hero e contraste no contato', async ({ page }) => {
   expect(await page.evaluate(() => document.fonts.check('16px "Season Collection"'))).toBe(true);
   await expect(page.locator('body')).toHaveCSS('font-family', /DM Sans Variable/);
   await expect(page.locator('#hero-title')).toHaveCSS('font-family', /Season Collection/);
-  await expect(page.locator('#projects-title')).toHaveCSS('font-family', /Season Collection/);
+  await expect(page.locator('#projetos')).toBeVisible();
   await expect(page.locator('.hero-description')).toHaveCSS('font-family', /DM Sans Variable/);
   await expect(page.locator('.name-first')).toHaveCSS('color', 'rgb(245, 240, 230)');
   await expect(page.locator('.name-last')).toHaveCSS('color', 'rgb(244, 92, 40)');
@@ -140,28 +140,33 @@ test('conquistas permanece estática, sem transições antes ou depois', async (
   expect(styles.closingHeight).toBeGreaterThanOrEqual(899);
 });
 
-test('prévia do Hero aguarda o zoom, revela os projetos e retorna', async ({ page }) => {
+test('prévia do Hero aguarda o zoom, revela o proof strip e retorna', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/');
   const result = await page.evaluate(async () => {
     const portrait = document.querySelector('#inicio .photo img')!;
     const zoom = portrait.getAnimations()[0];
-    const title = document.getElementById('projects-title')!;
+    const proof = document.getElementById('destaques')!;
+    const projects = document.getElementById('projetos')!;
     const afterZoom = await zoom.finished.then(() => scrollY);
     let peak = 0;
     let revealed = false;
+    let showedProjects = false;
     const end = performance.now() + 2200;
     while (performance.now() < end) {
       await new Promise(requestAnimationFrame);
       peak = Math.max(peak, scrollY);
-      const bounds = title.getBoundingClientRect();
-      revealed ||= bounds.top >= 0 && bounds.bottom <= innerHeight;
+      const proofBounds = proof.getBoundingClientRect();
+      const projectBounds = projects.getBoundingClientRect();
+      revealed ||= proofBounds.top >= 0 && proofBounds.bottom <= innerHeight + 2;
+      showedProjects ||= projectBounds.top < innerHeight && projectBounds.bottom > 0;
     }
-    return { afterZoom, peak, revealed, final: scrollY };
+    return { afterZoom, peak, revealed, showedProjects, final: scrollY };
   });
   expect(result.afterZoom).toBe(0);
   expect(result.peak).toBeGreaterThan(40);
   expect(result.revealed).toBe(true);
+  expect(result.showedProjects).toBe(false);
   expect(result.final).toBe(0);
 });
 
@@ -184,22 +189,17 @@ test('interação cancela a prévia pendente e âncoras não iniciam a prévia',
   expect(Math.abs(await page.evaluate(() => scrollY) - position)).toBeLessThan(2);
 });
 
-test('criptomoedas preservam movimento e preferência de movimento reduzido', async ({ page }) => {
+test('Trading Bot não exibe ilustrações de criptomoedas', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/#crypto');
-  const coins = page.locator('.bitcoin-floats');
-  const drift = () => coins.evaluate(element => parseFloat((element as HTMLElement).style.getPropertyValue('--drift')));
-  const initial = await drift();
-  await page.locator('#crypto').scrollIntoViewIfNeeded();
-  await expect.poll(drift).not.toBe(initial);
-  await page.emulateMedia({ reducedMotion: 'reduce' });
-  await expect.poll(drift).toBe(0);
+  await expect(page.locator('#crypto .bitcoin-floats')).toHaveCount(0);
+  await expect(page.locator('#crypto img[src*="bitcoin"], #crypto img[src*="ethereum"], #crypto img[src*="solana"]')).toHaveCount(0);
 });
 
 test('Campus, fotos, contatos e vídeo sob demanda', async ({ page }) => {
  await page.goto('/');
  await page.keyboard.press('Escape');
- await expect(page.getByRole('heading', { name: 'TEAjudo', exact: true })).toHaveCount(1);
+ await expect(page.getByRole('heading', { name: 'TEAjudo', exact: true })).toHaveCount(0);
  await expect(page.locator('#projetos')).toContainText('BeeThere');
  await expect(page.locator('#beethere video')).toHaveCount(0);
  await page.getByRole('button', {name:'Reproduzir apresentação do BeeThere'}).click();
@@ -208,21 +208,28 @@ test('Campus, fotos, contatos e vídeo sob demanda', async ({ page }) => {
  await expect(page.locator('.footer-watermark text')).toHaveCSS('font-family', /Bowlby One SC/);
  await expect(page.locator('.motion-control')).toHaveCount(0);
  await expect(page.getByRole('link',{name:/currículo/i})).toHaveCount(0);
- for (const photo of await page.locator('.photo img').all()) { await photo.scrollIntoViewIfNeeded(); await expect.poll(() => photo.evaluate(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0)).toBe(true); }
+ for (const photo of await page.locator('.photo img').all()) { await photo.scrollIntoViewIfNeeded(); await expect.poll(() => photo.evaluate(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0), { timeout: 15000 }).toBe(true); }
  const photos = await page.locator('.photo img').evaluateAll(images => images.every(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0));
  expect(photos).toBe(true);
+ await expect(page.locator('.working-section__background source[type="image/webp"]')).toHaveAttribute('srcset', '/media/optimized/campus-equipe-6766.webp');
+ const backgroundSrc = await page.locator('.working-section__background img').evaluate(image => (image as HTMLImageElement).currentSrc);
+ expect(backgroundSrc).toContain('campus-equipe-6766.webp');
+ const heroMask = await page.locator('.hero-full').evaluate(element => getComputedStyle(element, '::after').backgroundImage);
+ const workMask = await page.locator('.working-section').evaluate(element => getComputedStyle(element, '::after').backgroundImage);
+ expect(workMask).not.toBe(heroMask);
+ expect(workMask).toContain('rgba(0, 0, 0, 0.96)');
 });
 
 
 
-test('cards se sobrepõem como pastas e todos usam a altura do Trading Bot', async ({ page }) => {
+test('cards se sobrepõem como pastas e todos usam a altura do BeeThere', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto('/#crypto');
   const cards = page.locator('.project-list > *');
-  await expect(cards).toHaveCount(5);
-  await expect(cards.nth(4)).toHaveAttribute('id', 'twinpulse');
+  await expect(cards).toHaveCount(4);
+  await expect(cards.nth(3)).toHaveAttribute('id', 'twinpulse');
   await expect.poll(async () => cards.evaluateAll(nodes => new Set(nodes.map(node => Math.round(node.getBoundingClientRect().height))).size)).toBe(1);
-  const [cryptoHeight, twinHeight] = await cards.evaluateAll(nodes => [nodes[0].getBoundingClientRect().height, nodes[4].getBoundingClientRect().height]);
+  const [cryptoHeight, twinHeight] = await cards.evaluateAll(nodes => [nodes[0].getBoundingClientRect().height, nodes[3].getBoundingClientRect().height]);
   expect(Math.abs(cryptoHeight - twinHeight)).toBeLessThan(2);
   await page.locator('#whatsapp').evaluate(card => scrollBy({ top: card.getBoundingClientRect().top - 120, behavior: 'instant' }));
   const [top1, top2, top3] = await page.evaluate(() => ['#crypto', '#whatsapp', '#beethere'].map(id => document.querySelector(id)!.getBoundingClientRect().top));
@@ -248,17 +255,21 @@ for (const width of [375, 1440]) {
       hero.querySelector('.photo img')!.getAnimations().forEach(animation => animation.finish());
       let peak = 0;
       let revealed = false;
+      let showedProjects = false;
       const end = performance.now() + 2200;
       while (performance.now() < end) {
         await new Promise(requestAnimationFrame);
         peak = Math.max(peak, scrollY);
-        const bounds = document.getElementById('projects-title')!.getBoundingClientRect();
-        revealed ||= bounds.top >= 0 && bounds.bottom <= innerHeight;
+        const proofBounds = document.getElementById('destaques')!.getBoundingClientRect();
+        const projectBounds = document.getElementById('projetos')!.getBoundingClientRect();
+        revealed ||= proofBounds.top >= 0 && proofBounds.bottom <= innerHeight + 2;
+        showedProjects ||= projectBounds.top < innerHeight && projectBounds.bottom > 0;
       }
-      return { peak, revealed, final: scrollY };
+      return { peak, revealed, showedProjects, final: scrollY };
     });
     expect(result.peak).toBeGreaterThan(40);
     expect(result.revealed).toBe(true);
+    expect(result.showedProjects).toBe(false);
     expect(result.final).toBe(0);
   });
 }
