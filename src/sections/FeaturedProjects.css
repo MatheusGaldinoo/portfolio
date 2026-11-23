@@ -1,0 +1,307 @@
+@media(max-width:767px) { .featured-projects { padding-top: 32px } }
+
+.featured-projects { --color-muted: color-mix(in srgb, var(--white) 80%, transparent);
+  --color-line: color-mix(in srgb, var(--white) 20%, transparent);
+  --color-accent-active: var(--orange);
+  color: var(--white); }
+
+.featured-projects .project-whatsapp { border-top-color: var(--color-line) }
+
+.featured-projects { padding-top: 0 }
+
+.featured-projects .project { padding-block: 72px;
+  margin-top: 0;
+  border-top: 0;
+  background: var(--project-ground);
+  color: var(--project-ink) }
+
+.featured-projects .beethere-project { padding-block: 72px;
+  margin-top: 0;
+  border-top: 0;
+  background: var(--project-ground);
+  color: var(--project-ink) }
+
+.featured-projects .project-crypto { --project-ground: var(--white);
+  --project-ink: #142449;
+  --color-muted: #142449cc;
+  --color-line: #14244933 }
+
+.featured-projects .tech-list { padding-top: 16px;
+  border-top: 1px solid var(--color-line);
+  max-width: min(100%, 560px) }
+
+.featured-projects .tech-list li { display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  font-size: var(--type-small);
+  font-weight: 600 }
+
+.featured-projects .tech-list img { width: 22px;
+  height: 22px }
+
+@media(max-width:767px) { .featured-projects .project { padding-block: 48px } }
+
+@media(max-width:767px) { .featured-projects .beethere-project { padding-block: 48px } }
+
+.featured-projects .beethere-project { position: relative;
+  isolation: isolate }
+
+.featured-projects .tech-list { color: var(--project-ink) }
+
+.featured-projects .tech-list li { color: var(--project-ink) }
+
+.featured-projects .project-whatsapp { --project-ground: var(--chatbot-ground);
+  --project-ink: var(--white);
+  --color-line: #f5f0e644 }
+
+.featured-projects .project-twinpulse { clip-path: none }
+
+.featured-projects { clip-path: none;
+  box-shadow: none }
+
+.featured-projects { position: relative;
+  isolation: isolate }
+
+.featured-projects::before { content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: var(--navy);
+  z-index: -1 }
+
+.featured-projects { background: 0 0;
+  padding-bottom: 0;
+  display: flow-root }
+
+.featured-projects::before { display: none }
+
+.featured-projects .project { position: relative;
+  isolation: isolate;
+  box-shadow: none;
+  clip-path: none;
+  margin-block: 0 }
+
+.featured-projects .beethere-project { position: relative;
+  isolation: isolate;
+  box-shadow: none;
+  clip-path: none;
+  margin-block: 0 }
+
+.featured-projects .project::before { content: '';
+  position: absolute;
+  inset: 0 calc((100vw - 100%) / -2);
+  background: var(--project-ground);
+  z-index: -1;
+  pointer-events: none }
+
+.featured-projects .beethere-project::before { content: '';
+  position: absolute;
+  inset: 0 calc((100vw - 100%) / -2);
+  background: var(--project-ground);
+  z-index: -1;
+  pointer-events: none }
+
+.featured-projects .beethere-project { --project-ink: #142449;
+  --color-muted: #142449cc;
+  --color-line: #14244933;
+  background: var(--project-ground) }
+
+.featured-projects .project-whatsapp { --color-muted: var(--white) }
+
+.featured-projects .project-status { align-self: flex-start;
+  width: fit-content;
+  color: var(--orange); }
+
+.featured-projects .project-copy .project-description { margin-top: 28px }
+
+.featured-projects .contributions { margin-top: 28px;
+  margin-bottom: 0 }
+
+.featured-projects .campus-bullets { margin-top: 28px;
+  margin-bottom: 0 }
+
+.featured-projects .contributions li+li { margin-top: 16px }
+
+.featured-projects .campus-bullets li+li { margin-top: 16px }
+
+.featured-projects .tech-list { margin-top: 24px;
+  margin-bottom: 0;
+  gap: 14px 20px }
+
+.featured-projects .tech-list li img { width: 34px;
+  height: 32px;
+  object-fit: contain }
+
+@media(max-width:767px) { .featured-projects .tech-list li img { width: 30px;
+    height: 28px } }
+
+.featured-projects .project-copy { display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 0;
+  padding-bottom: 92px }
+
+.featured-projects .project-list>* { position: relative }
+
+.featured-projects .project-copy>.tech-list { position: absolute;
+  left: clamp(28px, 4vw, 60px);
+  bottom: clamp(28px, 4vw, 60px);
+  margin: 0;
+  padding-top: 16px;
+  width: max-content;
+  max-width: calc(100% - 2 * clamp(28px, 4vw, 60px)) }
+
+@media(max-width:767px) { .featured-projects .project-copy>.tech-list { left: clamp(14px, 4vw, 24px);
+    bottom: clamp(14px, 4vw, 24px);
+    max-width: calc(100% - 2 * clamp(14px, 4vw, 24px)) } }
+
+.featured-projects .project-grid { align-items: stretch }
+
+.featured-projects .project-grid>* { min-inline-size: 0 }
+
+.featured-projects .beethere-project { --project-ground: var(--white) }
+
+.featured-projects .project-description { font-size: var(--type-body)}
+
+.featured-projects .contributions ul { font-size: var(--type-body)}
+
+.featured-projects #beethere .project-description { font-size: var(--type-body)}
+
+.featured-projects #beethere .campus-bullets { font-size: var(--type-body)}
+
+.featured-projects .project:not(#whatsapp) .project-description { margin-top: 32px }
+
+.featured-projects #beethere .project-description { margin-top: 32px }
+
+.featured-projects .project:not(#whatsapp) .contributions { margin-top: 30px }
+
+.featured-projects #beethere .campus-bullets { margin-top: 30px }
+
+.featured-projects .project:not(#whatsapp) .project-copy>.tech-list { padding-top: 20px;
+  margin-bottom: 0 }
+
+.featured-projects #beethere>div:first-child>.tech-list { padding-top: 20px;
+  margin-bottom: 0 }
+
+.featured-projects .tech-list li img { width: 32px;
+  height: 30px }
+
+.featured-projects .tech-claude-mark { width: 32px;
+  height: 30px }
+
+.featured-projects .tech-list .tech-pandas img { width: 70px;
+  height: 30px }
+
+@media(max-width:767px) { .featured-projects #beethere .project-description { font-size: var(--type-body)} }
+
+@media(max-width:767px) { .featured-projects #beethere .campus-bullets { font-size: var(--type-body)} }
+
+@media(max-width:767px) { .featured-projects .project:not(#whatsapp) .project-copy>.tech-list { margin-top: 20px;
+    padding-top: 14px } }
+
+@media(max-width:767px) { .featured-projects #beethere>div:first-child>.tech-list { margin-top: 20px;
+    padding-top: 14px } }
+
+@media(max-width:767px) { .featured-projects .tech-list li img { width: 28px;
+    height: 26px } }
+
+@media(max-width:767px) { .featured-projects .tech-claude-mark { width: 28px;
+    height: 26px } }
+
+@media(max-width:767px) { .featured-projects .tech-list .tech-pandas img { width: 60px;
+    height: 26px } }
+
+.featured-projects .beethere-project { --project-ground: var(--white);
+  --project-ink: #142449;
+  --color-muted: #142449cc;
+  --color-line: #14244933;
+  background: var(--project-ground);
+  color: var(--project-ink) }
+
+.featured-projects .project-teajudo { --project-ground: #0b68be;
+  --project-ink: #142449;
+  --color-muted: #142449cc;
+  --color-line: #14244944;
+  background: var(--project-ground);
+  color: var(--project-ink) }
+
+.featured-projects .project-copy .project-description { font-size: var(--type-body);
+  margin-top: 28px }
+
+.featured-projects #beethere .project-description { font-size: var(--type-body);
+  margin-top: 28px }
+
+.featured-projects #beethere .campus-bullets { font-size: var(--type-body)}
+
+.featured-projects .project .contributions { margin-top: 28px }
+
+.featured-projects #beethere .campus-bullets { margin-top: 28px }
+
+.featured-projects .project .project-copy>.tech-list { margin-bottom: 0;
+  padding-top: 32px }
+
+.featured-projects #beethere>div:first-child>.tech-list { margin-bottom: 0;
+  padding-top: 32px }
+
+@media(min-width:768px) { .featured-projects>.project-list { display: grid;
+    grid-auto-rows: auto } }
+
+@media(min-width:768px) { .featured-projects .project { display: flex;
+    flex-direction: column } }
+
+@media(min-width:768px) { .featured-projects .beethere-project { display: flex;
+    flex-direction: column } }
+
+@media(min-width:768px) { .featured-projects .project .project-grid { display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, .8fr);
+    gap: 5%;
+    align-items: stretch;
+    min-height: 0;
+    flex: 1;
+    height: 100% } }
+
+@media(min-width:768px) { .featured-projects .teajudo-grid { display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, .8fr);
+    gap: 5%;
+    align-items: stretch;
+    min-height: 0;
+    flex: 1;
+    height: 100% } }
+
+@media(min-width:768px) { .featured-projects article#beethere { display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, .8fr);
+    gap: 5%;
+    align-items: stretch;
+    min-height: 0;
+    flex: 1;
+    height: 100% } }
+
+@media(min-width:768px) { .featured-projects .project .project-copy { grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    min-width: 0;
+    height: 100% } }
+
+@media(min-width:768px) { .featured-projects .project .project-visual { grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    align-self: center;
+    min-height: 0 } }
+
+@media(min-width:768px) { .featured-projects .teajudo-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr) } }
+
+@media(max-width:767px) { .featured-projects .project .project-copy>.tech-list { margin-top: 0;
+    padding-top: 28px } }
+
+@media(max-width:767px) { .featured-projects #beethere>div:first-child>.tech-list { margin-top: 0;
+    padding-top: 28px } }
+
+@media(max-width:767px) { .featured-projects .project-twinpulse .project-copy { order: 0 } }
+
+@media(max-width:767px) { .featured-projects .project-twinpulse .project-visual { order: 1 } }
+
+

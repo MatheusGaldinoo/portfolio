@@ -1,0 +1,121 @@
+.recognition-grid { display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6% }
+
+.recognition-photo { position: relative }
+
+.recognition-grid h3 { font-size: var(--type-emphasis);
+  margin-bottom: 20px }
+
+@media(max-width:767px) { .recognition-grid { grid-template-columns: 1fr;
+    gap: 40px } }
+
+.recognition-section { padding-block: 100px;
+  color: var(--text-1) }
+
+.recognition-section { background: var(--navy);
+  color: var(--text-1) }
+
+.recognition-group h3 { color: var(--text-1) }
+
+.recognition-group+.recognition-group { border-top: 1px solid var(--border-1);
+  padding-top: 24px }
+
+.recognition-context { font-size: var(--type-small);
+  color: var(--text-2) }
+
+@media(max-width:767px) { .recognition-section { padding-block: 64px } }
+
+@media(max-width:767px) { .recognition-grid { margin-top: 40px } }
+
+.recognition-grid { align-items: stretch }
+
+.recognition-photo { height: 100%;
+  min-height: 0 }
+
+.recognition-photo .photo { aspect-ratio: auto }
+
+.recognition-photo .photo img { object-fit: cover;
+  object-position: center 65% }
+
+@media(max-width:767px) { .recognition-photo { height: 520px } }
+
+@media(min-width:768px) { .recognition-photo { min-height: 0;
+    overflow: hidden } }
+
+@media(min-width:768px) { .recognition-photo .photo { aspect-ratio: auto } }
+
+@media(min-width:768px) { .recognition-photo .photo img { width: 100%;
+    height: 100%;
+    object-fit: cover } }
+
+.recognition-photo { transform: none;
+  transform-origin: top;
+  align-self: stretch }
+
+@media(min-width:768px) { .recognition-photo { position: relative;
+    height: auto;
+    margin-top: 0;
+    margin-bottom: -28px } }
+
+@media(min-width:768px) { .recognition-photo .photo { position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    transform: none } }
+
+.recognition-grid { margin-top: 32px }
+
+.recognition-label { display: flex;
+  align-items: center;
+  gap: 12px;
+  text-wrap: balance;
+  letter-spacing: .01em }
+
+.recognition-label svg { width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  color: var(--orange) }
+
+.recognition-section .recognition-grid { margin-top: 0 }
+
+.recognition-photo { margin-bottom: 0 }
+
+.recognition-photo .photo { height: 100% }
+
+.recognition-groups { display: grid;
+  gap: 24px }
+
+.recognition-group+.recognition-group { border-top: 1px solid var(--border-1);
+  padding-top: 24px }
+
+.recognition-group h3 { color: var(--orange);
+  font-size: var(--type-emphasis);
+  font-weight: 700;
+  margin: 0 0 12px }
+
+.recognition-group ul { display: grid;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0 }
+
+.recognition-group li { align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  flex-wrap: wrap }
+
+.recognition-group li>span:first-child { color: var(--text-1);
+  font-weight: 400;
+  text-wrap: pretty }
+
+.recognition-context { font-size: var(--type-small);
+  font-weight: 400;
+  color: var(--text-2) }
+
+.recognition-group li { display: grid;
+  grid-template-columns: minmax(0, 1fr) auto }
+
+.recognition-context { text-align: right }
+
+

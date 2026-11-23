@@ -1,0 +1,124 @@
+.hero-full {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  max-width: none;
+  height: 100svh;
+  min-height: 640px;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-full > .photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  background: var(--navy);
+}
+
+.hero-full > .photo img {
+  object-position: 65% 35% !important;
+  transform-origin: 68% 40%;
+}
+
+@media(prefers-reduced-motion: no-preference) {
+  .hero-full > .photo img {
+    animation: hero-portrait-zoom 4.75s cubic-bezier(.2, .65, .3, 1) both;
+  }
+}
+
+@keyframes hero-portrait-zoom {
+  from { scale: 1 }
+  to { scale: 1.085 }
+}
+
+.hero-full::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: var(--photo-mask);
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  padding-top: clamp(124px, 15vh, 168px);
+  padding-bottom: 48px;
+  color: var(--white);
+}
+
+.hero-full h1 {
+  margin: 0 0 16px;
+  font-family: var(--font-heading);
+  font-size: var(--type-display);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}
+
+.hero-full h1 > span:not(.sr-only) {
+  display: inline;
+}
+
+.hero-full h1 .name-first {
+  color: var(--white);
+}
+
+.hero-full h1 .name-last {
+  color: var(--orange);
+}
+
+.hero-description {
+  max-width: 52ch;
+  margin-top: 0;
+  font-size: var(--type-body);
+  line-height: 1.6;
+}
+
+.hero-cta {
+  margin-top: 28px;
+  width: fit-content;
+}
+
+@media(max-width:767px) {
+  .hero-full {
+    height: 100svh;
+    min-height: 640px;
+  }
+
+  .hero-full > .photo img {
+    object-position: 64% center !important;
+  }
+
+  .hero-full::after {
+    background: var(--photo-mask-mobile);
+  }
+
+  .hero-overlay {
+    justify-content: flex-start;
+    padding-top: 104px;
+    padding-bottom: 100px;
+  }
+
+  .hero-full h1 {
+    margin-bottom: 10px;
+    line-height: 1.2;
+    letter-spacing: -.03em;
+  }
+
+  .hero-description {
+    max-width: 34ch;
+  }
+
+  .hero-cta {
+    margin-top: 24px;
+  }
+}
