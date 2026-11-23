@@ -238,3 +238,109 @@ O usuário pediu o Hero como na `main`, mantendo só a ausência dos cards, e de
 No CSS, o Hero preserva fundo `#142449` e tipografia `Manrope`/`DM Sans Variable` nesta branch, além do gradiente e enquadramento originais. Foi adicionada a animação `hero-portrait-zoom` com `transform-origin: 68% 40%`, respeitando `prefers-reduced-motion`. Os testes de prévia foram alinhados ao comportamento baseado no zoom.
 
 Validação: `npm run build` aprovado (TypeScript e Vite) e testes Playwright executados localmente. Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — descrições próximas ao subtítulo dos projetos
+
+A pedido do usuário, as descrições de TwinPulse, Crypto Trading Bot, WhatsApp AI Assistant, BeeThere e TEAjudo foram aproximadas do status/subtítulo exibido sob o título. A margem superior das descrições passou de 28–32 px para 12 px nos estados base e sobrescreventes de `ProjectCard.css`, `BeeThereProject.css` e `FeaturedProjects.css`. Nenhum texto, conteúdo, ordem ou outro espaçamento foi alterado.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — CSS dividido por componente
+
+O `src/styles/globals.css` foi separado em arquivos CSS co-localizados com cada componente ou seção. Permaneceram no global apenas base/reset, tokens, fontes e utilitários; `src/main.tsx` importa os arquivos na ordem que reproduz a cascata original, antes de `project-motion.css`. Nenhuma regra visual foi adicionada ou removida: a única alteração de texto foi a conversão de `background: none/transparent` para `background: 0 0`, equivalente e necessária para manter o `background-position` calculado após a separação.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Comparação de estilos computados em 320, 375, 768, 1024 e 1440 px, com e sem `prefers-reduced-motion`, não encontrou diferenças além do progresso instantâneo de uma animação de traço. A suíte Playwright permaneceu com o mesmo resultado do baseline local (11 falhas pré-existentes e 7 passagens). Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — escala tipográfica e hierarquia de conquistas
+
+A pedido do usuário, a skill `impeccable` foi aplicada à seção “Formação e conquistas” e, depois, estendida ao site inteiro. `src/styles/tokens.css` passou a expor cinco papéis tipográficos: `--type-small` (15 px), `--type-body` (17 px), `--type-emphasis` (22 px), `--type-heading` (`clamp(28px, 3vw, 40px)`) e `--type-display` (`clamp(48px, 8vw, 96px)`). Todos os valores literais de `font-size` nos CSS de `src` foram convertidos nesses tokens; o `<small>` do rodapé também passou a usar `--type-small`, evitando os 12 px padrão do navegador. Permaneceram como exceção apenas os `4px` e `0` das teclas do mockup do laptop, que são arte, não texto do site.
+
+Em `src/sections/Recognition.css`, o título deixou de crescer para `--type-display` no mobile e usa `--type-heading` em todas as larguras. Os rótulos dos grupos ficaram em `--type-emphasis` com peso 700, os nomes dos itens em `--type-body` com peso 600 e o contexto em `--type-small` com peso 400 e cor `--text-2`. Nenhum texto, dado ou copy foi alterado.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Auditoria dos estilos calculados em 320, 375, 768, 1024 e 1440 px confirmou apenas os cinco tamanhos de texto previstos, sem overflow horizontal; o item mais longo quebra em três linhas sem corte. O detector da skill apontou dois avisos pré-existentes em `LaptopMockup.css` (borda de destaque em elemento arredondado e `Arial` no teclado do mockup). A suíte Playwright manteve o baseline local de 11 falhas pré-existentes e 7 passagens. Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — cards de projetos uniformes
+
+A pedido do usuário, os elementos equivalentes dos cinco cards passaram a compartilhar os mesmos estilos. O título de BeeThere saiu de `--type-display` e agora usa o mesmo `--type-heading` dos demais; status, descrição, contribuições e tecnologias também passaram a usar os mesmos tamanhos e espaçamentos. A largura da coluna de texto foi unificada à medida do Crypto Trading Bot, e a descrição ficou a 12 px do status. A lista de tecnologias ganhou o mesmo recuo superior em todos os cards.
+
+As ilustrações de criptomoedas foram removidas por completo: componente, CSS, import e regras associadas. O teste de movimento das moedas foi substituído por uma verificação de ausência. Os mockups de telefone cresceram — até 600 px de altura e 360 px de largura no desktop, e 480 px por 300 px no mobile — mantendo-se dentro dos cards. Os prefixos `PoC |`, `Protótipo |` e `Automação em Produção |` foram retirados dos status, conforme o usuário confirmou, deixando apenas o período.
+
+Durante a verificação da navegação, foi adicionada rolagem determinística para âncoras ao montar o app e em `hashchange`. Isso evita que `#projetos` deixe de rolar quando a troca de hash acontece antes de o React posicionar o alvo, sem alterar a prévia do Hero nem o movimento reduzido.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Estilos calculados em 320, 375, 768, 1024 e 1440 px confirmam títulos, status, descrição, contribuições e tecnologias idênticos nos cinco cards, com a mesma largura de texto do Crypto Trading Bot e sem overflow horizontal. A suíte Playwright voltou ao baseline local de 11 falhas pré-existentes e 7 passagens; o teste das criptomoedas passou a verificar a ausência das ilustrações. O detector da skill repetiu apenas os dois avisos pré-existentes em `LaptopMockup.css`. README atualizado. Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — títulos de seção e peso das conquistas
+
+A pedido do usuário, os títulos de seção passaram a usar o mesmo tamanho de “Entre em contato” do repositório remoto: 32 px fixos. Em `origin/main`, essa medida vem da regra final `.contact-section h2`; a escala anterior de `--type-heading` (`clamp(28px, 3vw, 40px)`) foi substituída por `32px` em `src/styles/tokens.css`, mantendo os cinco papéis tipográficos. Houve uma reversão intermediária apenas no título do contato, que o usuário desfez em seguida: `.footer-title` voltou a `--type-heading` e a exceção mobile foi removida. Assim, Projetos, Como trabalho, Formação e conquistas, a frase de encerramento e Entre em contato compartilham 32 px em todas as larguras.
+
+Em `src/sections/Recognition.css`, os rótulos Medalhas, Cursos e Extracurriculares passaram a laranja `#f45c28` e negrito (700), enquanto os nomes dos itens ficaram em peso normal (400). A hierarquia combina cor e peso nos rótulos, mantendo nomes em 17 px e contexto em 15 px.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Auditoria em 320, 375, 768, 1024 e 1440 px confirmou os cinco títulos de seção em 32 px, rótulos laranja em negrito, nomes em peso normal e ausência de overflow horizontal. O detector da skill repetiu apenas os dois avisos pré-existentes em `LaptopMockup.css`. README atualizado. Entrega local, sem commit ou publicação.
+
+Durante a validação, `src/sections/FeaturedProjects.tsx` e `tests/e2e/portfolio.spec.ts` foram alterados fora desta entrega, reduzindo a seleção para três cards e trocando as expectativas de seleção. Com esse estado intermediário, a suíte Playwright reportou 12 falhas e 6 passagens; o ajuste posterior da seleção e dos testes está registrado na seção seguinte.
+
+## 23 de novembro de 2026 — TwinPulse e TEAjudo fora da interface
+
+A pedido do usuário, os cards de TwinPulse e TEAjudo deixaram de ser renderizados em `src/sections/FeaturedProjects.tsx`. O conteúdo e os componentes permanecem no repositório, mas a seleção exibe apenas Crypto Trading Bot, WhatsApp AI Assistant e BeeThere. As asserções das E2E que esperavam os dois cards foram ajustadas ao novo estado.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Os sete testes E2E que cobrem a seleção de projetos passaram nas larguras 320, 375, 768, 1024 e 1440 px, incluindo a ausência dos dois cards, a ordem dos três restantes e a igualdade de altura. Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — TwinPulse restaurado
+
+A pedido do usuário, o card de TwinPulse voltou à seleção de projetos, na última posição, com sua captura, contribuições e tecnologias. TEAjudo permanece fora da interface. As asserções das E2E foram atualizadas para quatro cards, com TwinPulse ao final.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Os mesmos sete testes E2E da seleção passaram nas cinco larguras. Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — foto de fundo em “Como trabalho”
+
+A pedido do usuário, a fotografia da seção deixou de ocupar uma coluna e passou a preencher toda a seção `#trabalho`. O componente `Photo` continua responsável pela mídia e pelo fallback; `src/config/media.ts` agora aponta `teamwork` para o arquivo `.png` realmente presente em `public/media`, com as dimensões reais do derivado (740 × 477) e enquadramento em `center 42%`. A coluna de texto ficou sozinha, limitada a 820 px, com o título e os parágrafos em cor clara sobre a imagem.
+
+A máscara é um gradiente preto aplicado por `::after`: de `rgba(0, 0, 0, .78)` à esquerda até `.34` à direita no desktop, e de `.72` a `.50` no mobile, mantendo o texto legível sem escurecer toda a fotografia. O divisor entre os dois blocos passou a usar branco translúcido. Como a foto em coluna não existe mais, foram removidos o frame, o parallax em `scrollFallback.ts` e as regras de `project-motion.css` ligadas a `.working-summary__photo` e `.working-summary__frame`, incluindo a animação `team-parallax`.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Verificação em navegador nas larguras 320, 375, 768, 1024 e 1440 px confirmou que a imagem carrega, cobre toda a seção, a máscara está aplicada, o texto permanece em `rgb(245, 240, 230)` e não há overflow horizontal. O teste E2E de temas continua defasado em relação à paleta atual — era uma das falhas pré-existentes do baseline e seu valor esperado para a seção não foi alterado nesta entrega. Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — BeeThere como referência de altura dos cards
+
+A pedido do usuário, `usePortfolioMotion.ts` passou a medir o card do BeeThere (o filho direto `.beethere-project` da lista) em vez do Trading Bot. A medida é a altura natural do card, sem o acréscimo fixo de 160 px usado antes, e continua sendo aplicada por `--project-card-height` a todos os cards da seleção. O article interno do BeeThere também recebe `height: auto` durante a medição: sem isso, o `height: 100%` dele colapsava porque o pai estava sendo medido, gerando `0px`. A quantidade de cards nunca definiu a altura — o valor vinha de um único card medido pelo hook; agora esse card é o BeeThere.
+
+O `--card-height` inline, que não era consumido por nenhuma regra, foi removido junto com a variável `cards`. O nome do teste que verificava a igualdade de alturas deixou de citar o Trading Bot.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Medição em navegador com movimento: todos os quatro cards com a mesma altura em 1440 px (563), 1024 px (639), 768 px (673), 375 px (1227) e 320 px (1309), sem conteúdo cortado (`scrollHeight` igual a `clientHeight`). Os sete testes E2E da seleção passaram. Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — fotos na resolução original
+
+A pedido do usuário, as fotografias passaram a usar sempre o arquivo original disponível. A foto de fundo de “Como trabalho” voltou ao JPEG `CampusMobile_20260202-225.jpeg` (6766 × 4386), restaurado do commit `fae58af` e com hash idêntico ao objeto do Git; `src/config/media.ts` trocou o derivado PNG de 740 × 477 pelo helper `photo()`, preservando o enquadramento `center 42%`. O retrato do Hero, a medalha e a captura do TwinPulse já apontavam para os originais e não foram alterados.
+
+Removidos de `index.html` os preloads `imagesrcset` do Hero em WebP e da assinatura em WebP: eles baixavam versões menores que a página nunca solicitava. Os arquivos continuam em `public/media/optimized/` como auxiliares, e `ufcg.webp` segue sendo a única otimização consumida. README e `docs/media-guide.md` registraram a política de usar originais nas fotografias.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Os seis testes E2E de conteúdo/recursos nas larguras 320, 375, 768, 1024 e 1440 px e de fotos/vídeo sob demanda passaram. Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — WebP de alta qualidade para “Como trabalho”
+
+A pedido do usuário, gerei `public/media/optimized/campus-equipe-6766.webp` a partir do JPEG original com Pillow (`ImageOps.exif_transpose`, `RGB`, `method=6`, qualidade 92), mantendo os 6766 × 4386 px. O arquivo tem 6.035.650 bytes, contra 16.764.719 do JPEG — redução de aproximadamente 64% sem perder resolução. Tests locais com qualidades 88 e 95 resultaram em 4,2 MB e 8,3 MB; a 92 foi escolhida como ponto de equilíbrio.
+
+`MediaAsset` ganhou o campo opcional `webpSrc`, e `Photo` passou a envolver a imagem em `<picture>` com `<source type="image/webp">` quando ele existe. O JPEG original continua como `src` e fallback nativo; `src/config/media.ts` aplicou o WebP somente a `teamwork`. README e `docs/media-guide.md` descrevem a nova política.
+
+`.photo picture` usa `display: block` com largura e altura de 100%. A primeira tentativa com `display: contents` deixou o `<img>` lazy sem caixa própria: o navegador não iniciava a requisição ao rolar até a seção, e o teste E2E falhava de forma intermitente. Com o `<picture>` preenchendo o contêiner, o carregamento lazy volta a disparar corretamente.
+
+O teste E2E agora verifica o `srcset` do `<source>` e o `currentSrc` escolhido pelo navegador. O timeout do poll de carregamento das fotos passou de 5 s para 15 s para acomodar o decode do arquivo de 6 MB em máquinas mais lentas; uma execução intermitente havia excedido os 5 s em 1024 px.
+
+A pedido do usuário, a foto de “Como trabalho” recebeu a mesma máscara do Hero. Os gradientes passaram para os tokens `--photo-mask` e `--photo-mask-mobile` em `src/styles/tokens.css`, consumidos por `.hero-full::after` e `.working-section::after` no desktop e no mobile. Antes, a seção usava um gradiente preto mais fraco (`.78/.58/.34` no desktop e `.72/.5` no mobile).
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Os seis testes E2E de conteúdo/recursos e fotos passaram, incluindo a verificação de que o navegador escolhe o WebP no fundo de “Como trabalho” e de que `::after` das duas seções tem o mesmo `background-image` calculado. A suíte completa segue com três falhas pré-existentes e alheias a esta entrega (fonte do corpo, cores de tema e altura da seção de encerramento). Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — máscara mais escura em “Como trabalho”
+
+O usuário pediu mais escuridão no lado esquerdo da foto para melhorar a leitura do texto e ofuscar o figurante ao lado. A igualdade com a máscara do Hero foi substituída por dois tokens próprios em `src/styles/tokens.css`: `--photo-mask-work`, com `rgba(0, 0, 0, .96)` na borda esquerda, `.88` em 34%, `.5` em 62% e `.12` em 88%; e `--photo-mask-work-mobile`, vertical, com `.94` no topo, `.78` em 55% e `.55` na base. `.working-section::after` passou a usar esses tokens; o Hero permanece com `--photo-mask` e `--photo-mask-mobile`.
+
+O E2E deixou de exigir máscaras iguais e agora confirma que a de “Como trabalho” é diferente e começa em `rgba(0, 0, 0, 0.96)`.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Os seis testes E2E de conteúdo/recursos e fotos passaram. Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — Hero alinhada ao tema escuro atual
+
+O usuário escolheu o tema escuro vigente como referência visual. `src/sections/Hero.css` foi reescrito sem as declarações duplicadas e conflitantes (Manrope, três `letter-spacing`, duas alturas, três recuos superiores e regras mortas de `.hero` e do sublinhado). A foto e o véu passaram a usar os mesmos tokens das demais seções escuras: `--navy` como fundo e gradiente preto em vez do `#142449`/creme literais; o texto usa `--white`/`--orange` e a descrição usa `--type-body` (17 px), como os textos de projeto e conquistas. O cabeçalho sobre a foto trocou o gradiente `#142449` por preto translúcido e o menu mobile usa `--surface-1-85`.
+
+Em seguida o usuário pediu a restauração de quatro comportamentos da versão anterior: o zoom lento da foto (`hero-portrait-zoom`, 4,75 s, `scale` de 1 a 1.085, apenas com `prefers-reduced-motion: no-preference`), o CTA com glassmorfismo (`GlassCtaButton` voltou a ser usado em `Hero.tsx`), a proximidade entre “Matheus” e “Galdino” (os spans voltaram a `inline` ao lado do `<br/>` e a entrelinha passou a 1.2, deixando as linhas a 1–3 px uma da outra em vez dos 42–86 px anteriores) e a rolagem de prévia. A prévia foi reimplementada a partir do histórico (`4b0728b`): espera o zoom e a assinatura terminarem (4,75 s + 250 ms, cerca de 5 s no total, para não exigir uma permanência longa na Hero), percorre apenas a altura do `#destaques` (proof strip), sem revelar `#projetos`, e retorna ao topo e é cancelada por rolagem, navegação ou mudança da preferência de movimento. Cliques em controles e âncoras não a disparam.
+
+Validação: `npm run build` aprovado. Os quatro testes E2E de prévia passaram. Estilos calculados conferidos em 320, 375, 768, 1024 e 1440 px: zero overflow, nomes próximos, CTA com `backdrop-filter: blur(18px) saturate(1.4)` e animação de zoom ativa. Entrega local, sem commit ou publicação.
