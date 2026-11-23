@@ -17,7 +17,49 @@
   padding-bottom: 0;
 }
 
-/* A altura é medida no Trading Bot e aplicada a todos os cards. */
+/* A altura natural do BeeThere é aplicada a todos os cards. */
+/* Elementos com o mesmo papel compartilham tamanho e espaçamento em todos os cards. */
+.featured-projects .project-title,
+.featured-projects #beethere .project-title {
+  font-size: var(--type-heading);
+}
+
+.featured-projects .project-status,
+.featured-projects #beethere .project-status {
+  font-size: var(--type-body);
+}
+
+.featured-projects .project .project-description,
+.featured-projects .project:not(#whatsapp) .project-description,
+.featured-projects #beethere .project-description {
+  margin-top: 12px;
+}
+
+.featured-projects .contributions,
+.featured-projects .project .contributions,
+.featured-projects .project:not(#whatsapp) .contributions,
+.featured-projects #beethere .contributions,
+.featured-projects #beethere .campus-bullets {
+  margin-top: 24px;
+}
+
+.featured-projects .contributions ul,
+.featured-projects #beethere .campus-bullets {
+  font-size: var(--type-body);
+  margin-block: 0;
+}
+
+.featured-projects .contributions li+li,
+.featured-projects #beethere .campus-bullets li+li {
+  margin-top: 10px;
+}
+
+.featured-projects .project .project-copy>.tech-list,
+.featured-projects #beethere>div:first-child>.tech-list {
+  margin-top: 0;
+  padding-top: 20px;
+}
+
 .featured-projects .project-list>* {
   padding: clamp(28px, 4vw, 60px);
   border: 1px solid var(--light-line);
@@ -43,6 +85,14 @@
 /* Mídias acompanham a altura disponível sem ultrapassar o card. */
 @media (min-width: 768px) {
 
+  /* Uma única medida de texto: a coluna do Trading Bot. */
+  .featured-projects .project .project-grid,
+  .featured-projects .teajudo-grid,
+  .featured-projects article#beethere {
+    grid-template-columns: minmax(0, 1.85fr) minmax(0, .65fr);
+    gap: 5%;
+  }
+
   .featured-projects .project-visual,
   .featured-projects .teajudo-presentation,
   .featured-projects #beethere>.phone-mockup.iphone-mockup {
@@ -56,10 +106,10 @@
 
   .featured-projects .phone-mockup.iphone-mockup,
   .featured-projects #beethere>.phone-mockup.iphone-mockup {
-    height: min(560px, calc(100% - 16px));
+    height: min(600px, calc(100% - 16px));
     width: auto;
-    max-width: min(100%, 320px);
-    aspect-ratio: 9 / 19.5;
+    max-width: min(100%, 360px);
+    aspect-ratio: 9 / 18;
   }
 
   .featured-projects .teajudo-presentation .video-frame {
@@ -103,6 +153,16 @@
 
 @media (max-width: 767px) {
 
+  .featured-projects .project-status,
+  .featured-projects #beethere .project-status {
+    font-size: var(--type-small);
+  }
+
+  .featured-projects .project .project-copy>.tech-list,
+  .featured-projects #beethere>div:first-child>.tech-list {
+    padding-top: 14px;
+  }
+
   .featured-projects .project-visual,
   .featured-projects .teajudo-presentation {
     display: flex;
@@ -113,10 +173,10 @@
 
   .featured-projects .phone-mockup.iphone-mockup,
   .featured-projects #beethere>.phone-mockup.iphone-mockup {
-    height: clamp(320px, 78vw, 420px);
+    height: clamp(360px, 92vw, 480px);
     width: auto;
-    max-width: min(100%, 260px);
-    aspect-ratio: 9 / 19.5;
+    max-width: min(100%, 300px);
+    aspect-ratio: 9 / 18;
   }
 
   .featured-projects .project-whatsapp .project-grid,
@@ -168,7 +228,7 @@
 }
 
 .featured-projects .project-twinpulse .contributions li::marker {
-  color: #142449;
+  color: var(--orange);
 }
 
 .featured-projects .project-twinpulse .tech-list {
@@ -182,11 +242,6 @@
 /* Subtítulos dos projetos em laranja */
 .featured-projects .project-status {
   color: var(--orange) !important;
-}
-
-.projects-heading {
-  padding-top: clamp(24px, 4vw, 40px);
-  padding-bottom: clamp(16px, 2vw, 24px);
 }
 
 .featured-projects .project-list>*:first-child {
@@ -309,18 +364,6 @@
   min-height: 100svh;
 }
 
-.working-summary__frame {
-  overflow: clip;
-  align-self: center;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .working-summary__photo {
-    scale: 1.18;
-    transform-origin: bottom;
-  }
-}
-
 /* Manifesto de Encerramento: Minimalista, centralizado, revelando letras (cinza para branco) */
 .closing-statement {
   display: flex;
@@ -342,7 +385,7 @@
 
 .closing-headline {
   font-family: var(--font-heading);
-  font-size: clamp(24px, 3.4vw, 44px);
+  font-size: var(--type-heading);
   line-height: 1.2;
   letter-spacing: -0.035em;
   margin: 0;
@@ -389,7 +432,7 @@
 }
 
 .footer-title {
-  font-size: clamp(36px, 4.5vw, 60px);
+  font-size: var(--type-heading);
   margin: 0;
   letter-spacing: -0.04em;
   color: var(--text-1);
@@ -406,7 +449,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 15px;
+  font-size: var(--type-small);
   color: var(--text-1-8);
   text-decoration: none;
   min-height: 32px;
@@ -446,7 +489,7 @@
   fill: var(--text-1);
   opacity: 0.04;
   font-family: 'Bowlby One SC', sans-serif;
-  font-size: 108px;
+  font-size: var(--type-display);
   letter-spacing: 0.02em;
 }
 
@@ -457,7 +500,7 @@
   justify-content: space-between;
   align-items: center;
   color: var(--text-2);
-  font-size: 13px;
+  font-size: var(--type-small);
 }
 
 @media (max-width: 767px) {
@@ -472,7 +515,7 @@
   }
 
   .closing-headline {
-    font-size: 32px;
+    font-size: var(--type-heading);
   }
 }
 
@@ -490,29 +533,6 @@
 
   .closing-headline em .char {
     color: var(--orange);
-  }
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .working-summary__frame {
-      view-timeline-name: --team;
-    }
-
-    .working-summary__photo {
-      animation: team-parallax linear both;
-      animation-timeline: --team;
-    }
-  }
-}
-
-@keyframes team-parallax {
-  from {
-    transform: none;
-  }
-
-  to {
-    transform: translateY(8%);
   }
 }
 
