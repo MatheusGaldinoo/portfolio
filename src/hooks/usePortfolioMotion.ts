@@ -26,18 +26,18 @@ export function usePortfolioMotion(main: RefObject<HTMLElement | null>) {
       });
       const selector = '.project-title, .contributions ul, .campus-bullets, .tech-list, .recognition-group, .working-summary__copy';
       root.querySelectorAll(selector).forEach(el => observer.observe(el));
-      // A altura do Trading Bot define o tamanho de todos os cards.
+      // A altura natural do BeeThere define o tamanho de todos os cards.
       const list = root.querySelector<HTMLElement>('.project-list')!;
-      const cards = Array.from(list.querySelectorAll<HTMLElement>(':scope > *'));
-      const reference = list.querySelector<HTMLElement>('#crypto');
+      const reference = list.querySelector<HTMLElement>(':scope > .beethere-project');
+      const referenceContent = reference?.querySelector<HTMLElement>('article');
       const syncCardHeight = () => {
         if (!reference) return;
         reference.style.height = 'auto';
-        const border = parseFloat(getComputedStyle(reference).borderTopWidth) + parseFloat(getComputedStyle(reference).borderBottomWidth);
-        const height = Math.ceil(reference.getBoundingClientRect().height + border + 40);
+        if (referenceContent) referenceContent.style.height = 'auto';
+        const height = Math.ceil(reference.getBoundingClientRect().height);
+        if (referenceContent) referenceContent.style.removeProperty('height');
         reference.style.removeProperty('height');
         list.style.setProperty('--project-card-height', `${height}px`);
-        cards.forEach(card => card.style.setProperty('--card-height', `${height}px`));
       };
       syncCardHeight();
       void document.fonts.ready.then(() => { if (active) syncCardHeight(); });
