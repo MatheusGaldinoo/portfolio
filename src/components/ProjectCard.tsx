@@ -1,6 +1,5 @@
 import type { Project } from '../types/content';
 import { media } from '../config/media';
-import { CryptoIllustration } from './CryptoIllustration';
 import { LaptopMockup } from './LaptopMockup';
 import { PhoneMockup } from './PhoneMockup';
 import { TechList } from './TechList';
@@ -25,7 +24,6 @@ export function ProjectCard({ project }: { project: Project }) {
           <TechList items={project.technologies}/>
         </div>
       </div>
-      {project.id === 'crypto' && <CryptoIllustration/>}
     </article>
   );
 }
