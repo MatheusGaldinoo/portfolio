@@ -64,8 +64,7 @@ function Content({ children }: { children: ReactNode }) {
           strokeLinecap="round"
           strokeLinejoin="round"
         >
-          <path d="M12 4v14" />
-          <path d="m6 13 6 6 6-6" />
+          <path d="m6 9 6 6 6-6" />
         </svg>
       </span>
     </>

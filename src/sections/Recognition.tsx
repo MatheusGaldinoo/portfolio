@@ -29,8 +29,7 @@ const groups = [
 
 
 export function Recognition() {
-  return <section id="conquistas" className="recognition-section container">
-    <h2 className="section-title">Formação e conquistas</h2>
+  return <section id="conquistas" className="recognition-section container" aria-label="Formação e conquistas">
     <div className="recognition-grid">
       <div className="recognition-photo"><Photo asset={media.medal}/></div>
       <div className="recognition-groups">
