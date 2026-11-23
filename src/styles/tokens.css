@@ -20,10 +20,19 @@
 
 :root {
   color-scheme: dark;
+  --type-small: 15px;
+  --type-body: 17px;
+  --type-emphasis: 22px;
+  --type-heading: 32px;
+  --type-display: clamp(48px, 8vw, 96px);
   --font-body-weight: var(--font-body-weight-dark);
   --font-heading-weight: var(--font-heading-weight-dark);
   --outlined-badge-border-width: 1px;
   --outlined-badge-font-weight: 600;
+  --photo-mask: linear-gradient(90deg, rgba(0, 0, 0, .86), rgba(0, 0, 0, .58) 42%, rgba(0, 0, 0, .12) 78%);
+  --photo-mask-mobile: linear-gradient(180deg, rgba(0, 0, 0, .82), rgba(0, 0, 0, .5));
+  --photo-mask-work: linear-gradient(90deg, rgba(0, 0, 0, .96), rgba(0, 0, 0, .88) 34%, rgba(0, 0, 0, .5) 62%, rgba(0, 0, 0, .12) 88%);
+  --photo-mask-work-mobile: linear-gradient(180deg, rgba(0, 0, 0, .94), rgba(0, 0, 0, .78) 55%, rgba(0, 0, 0, .55));
 
   /* Details.so surfaces */
   --surface-0: hsl(0, 0%, 0%);
