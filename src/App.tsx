@@ -16,6 +16,16 @@ export default function App() {
   usePortfolioMotion(main);
 
   useEffect(() => {
+    const scrollToHash = () => {
+      const id = decodeURIComponent(location.hash.slice(1));
+      if (id) document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    };
+    scrollToHash();
+    addEventListener('hashchange', scrollToHash);
+    return () => removeEventListener('hashchange', scrollToHash);
+  }, []);
+
+  useEffect(() => {
     const scopeEl = main.current;
     if (!scopeEl) return;
 
