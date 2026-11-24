@@ -1,6 +1,7 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { usePortfolioMotion } from './hooks/usePortfolioMotion';
+import { useSmoothAnchorScroll } from './hooks/useSmoothAnchorScroll';
 import { textReveal02 } from './hooks/textReveal02';
 import { WorkingAtVirtus } from './sections/WorkingAtVirtus';
 import { Navbar } from './components/Navbar';
@@ -14,16 +15,7 @@ import { Contact } from './sections/Contact';
 export default function App() {
   const main = useRef<HTMLElement>(null);
   usePortfolioMotion(main);
-
-  useEffect(() => {
-    const scrollToHash = () => {
-      const id = decodeURIComponent(location.hash.slice(1));
-      if (id) document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
-    };
-    scrollToHash();
-    addEventListener('hashchange', scrollToHash);
-    return () => removeEventListener('hashchange', scrollToHash);
-  }, []);
+  useSmoothAnchorScroll();
 
   useEffect(() => {
     const scopeEl = main.current;

@@ -1,4 +1,21 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
+
+async function sampleScroll(page: Page, limit: number) {
+  return page.evaluate(async duration => {
+    const positions: number[] = [];
+    let stable = 0;
+    let settledAt = 0;
+    const start = performance.now();
+    while (performance.now() - start < duration) {
+      await new Promise(requestAnimationFrame);
+      const y = Math.round(scrollY);
+      stable = positions.length > 3 && y === positions[positions.length - 1] ? stable + 1 : 0;
+      if (stable === 6 && !settledAt) settledAt = performance.now() - start;
+      positions.push(y);
+    }
+    return { distinct: new Set(positions).size, settledAt };
+  }, limit);
+}
 for (const width of [320, 375, 768, 1024, 1440]) {
   test(`conteúdo, recursos e layout em ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });
@@ -39,6 +56,36 @@ test('menu mobile: teclado, Escape e seleção de âncora', async ({ page }) => 
   await expect(page.getByRole('navigation')).toBeHidden();
   await expect(page).toHaveURL(/#projetos$/);
 });
+test('rolagem é mais longa quanto maior a distância; movimento reduzido salta', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/');
+  await page.keyboard.press('Escape');
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe('smooth');
+
+  await page.locator('.hero-cta').click();
+  const cta = await sampleScroll(page, 1800);
+  expect(cta.distinct).toBeGreaterThan(10);
+  expect(cta.settledAt).toBeGreaterThan(600);
+  expect(cta.settledAt).toBeLessThan(1800);
+  await expect.poll(() => page.locator('#projetos').evaluate(section => {
+    const offset = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop);
+    return Math.abs(section.getBoundingClientRect().top - offset);
+  })).toBeLessThan(2);
+
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await page.getByRole('navigation').getByRole('link', { name: 'Como trabalho', exact: true }).click();
+  const nav = await sampleScroll(page, 3800);
+  expect(nav.distinct).toBeGreaterThan(10);
+  expect(nav.settledAt).toBeGreaterThan(cta.settledAt + 500);
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await page.getByRole('navigation').getByRole('link', { name: 'Projetos', exact: true }).click();
+  const reduced = await sampleScroll(page, 600);
+  expect(reduced.distinct).toBeLessThanOrEqual(2);
+  expect(reduced.settledAt).toBeLessThan(300);
+});
+
 test('prefere movimento reduzido e preserva os detalhes', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
