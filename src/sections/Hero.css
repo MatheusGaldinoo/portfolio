@@ -60,7 +60,7 @@
   font-family: var(--font-heading);
   font-size: var(--type-display);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1;
   letter-spacing: -.025em;
 }
 
@@ -110,7 +110,7 @@
 
   .hero-full h1 {
     margin-bottom: 10px;
-    line-height: 1.2;
+    line-height: 1;
     letter-spacing: -.03em;
   }
 
