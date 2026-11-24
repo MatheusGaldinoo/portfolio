@@ -368,3 +368,17 @@ Em seguida o usuário pediu uma animação mais lenta e suave. Como a rolagem na
 Por fim o usuário observou que a duração fixa deixava os saltos longos rápidos demais. A duração agora é relativa à distância medida em viewports: `1.1s * (distância / altura da viewport)^0.6`, limitada a 0,8–3 s. Assim, um salto de uma viewport mantém o ritmo anterior (~1,1 s em 1440×900), enquanto Projetos → Como trabalho (cerca de quatro viewports no desktop) leva ~2,5 s e o contato, no máximo, 3 s. A curva sublinear evita que um salto de dez viewports vire uma espera de vários segundos.
 
 Novo teste E2E amostra `scrollY` quadro a quadro após clicar no CTA do Hero e em um link do menu: exige mais de dez posições intermediárias, estabilização entre 600 ms e 1,8 s no salto curto e estabilização pelo menos 500 ms depois no salto longo; com movimento reduzido a posição salta em um quadro. Validação: `npm run build` aprovado; 18 dos 21 testes Playwright aprovados em execução isolada na porta 4175, incluindo o novo. As três falhas restantes são as pré-existentes registradas acima (fonte do corpo, cores de tema e altura da seção de encerramento), alheias à rolagem. Entrega local, sem publicação.
+
+## 23 de novembro de 2026 — ajuste fino em “Como trabalho”
+
+A pedido do usuário, os blocos de texto e a divisória da seção ficaram um pouco mais estreitos: `.working-summary` passou de 820 px para 720 px e o `max-width` dos parágrafos, de 68ch para 60ch. A linha entre os dois blocos acompanha a largura do resumo, sem regras novas.
+
+A foto de fundo foi levemente aproximada e deslocada à direita com `transform: translateX(1.5%) scale(1.03)` no wrapper `.working-section__background`. O escalonamento evita que a borda esquerda da imagem apareça durante o deslocamento; a seção continua com `overflow: hidden` e a máscara inalterada.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Conferência em navegador a 1440×900 e 375×812: resumo com 720 px/327 px, parágrafo com 567 px/327 px, divisória com 720 px/327 px, transform aplicado sem overflow horizontal e WebP de fundo carregando. Entrega local, sem publicação.
+
+## 23 de novembro de 2026 — frase de encerramento em primeira pessoa
+
+O usuário pediu uma frase mais representativa e pessoal no lugar de “O código começa com uma pergunta.”. `src/sections/ClosingStatement.tsx` passou a usar “Eu pergunto, testo, construo e entrego.”, com a mesma quebra em duas linhas e a segunda metade em laranja, preservando o scrub de cores. A escolha retoma o que o portfólio já mostra: pesquisa e validação no BeeThere e no TEAjudo, implementação nos projetos de IA e a responsabilidade pela entrega descrita em “Como trabalho”. README atualizado; o registro histórico de 21 de novembro manteve a frase antiga como parte do relato daquela data.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Entrega local, sem commit ou publicação.

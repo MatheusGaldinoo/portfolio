@@ -9,9 +9,9 @@ export function ClosingStatement() {
         data-scroll="scrub"
         style={{ visibility: 'hidden' }}
       >
-        <span>O código começa</span>
+        <span>Eu pergunto, testo,</span>
         <br />
-        <em>com uma pergunta.</em>
+        <em>construo e entrego.</em>
       </h2>
     </section>
   );
