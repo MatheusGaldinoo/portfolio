@@ -350,3 +350,11 @@ Validação: `npm run build` aprovado. Os quatro testes E2E de prévia passaram.
 O usuário pediu que a revelação do texto de encerramento termine quando o scroll chegar ao meio da seção. Em `src/hooks/textReveal02.ts`, `scrubEnd` passou de `"top 20%"` para `"center center"`: como o `<h2>` está centralizado em `.closing-statement`, o centro do texto coincide com o centro da seção, e o scrub agora chega a 100% quando esse ponto cruza o meio da viewport. O início permanece em `"top 80%"`, e nenhum outro elemento usa `data-scroll="scrub"`.
 
 Validação: `npm run build` aprovado (TypeScript e Vite). O E2E de rolagem por toque, que leva `#closing-line` ao centro da viewport, passou; a suíte completa segue com as mesmas três falhas pré-existentes e alheias a esta mudança (fonte do corpo, cores de tema e altura da seção de encerramento). Entrega local, sem publicação.
+
+## 23 de novembro de 2026 — sombreamento dos cards ultrapassados
+
+A pedido do usuário, os cards da seleção passaram a escurecer conforme o próximo sobe e os encobre na pilha sticky. O novo `src/hooks/projectCardShade.ts` usa `ScrollTrigger` com `scrub` em cada card, tendo o card seguinte como gatilho (`top 60%` a `top 10%`), e escreve a variável `--card-shade` de 0 a 1. O hook é ligado e desligado por `usePortfolioMotion` junto com os demais efeitos de `prefers-reduced-motion: no-preference`; `document.fonts.ready` atualiza as medidas e chama `ScrollTrigger.refresh()`.
+
+Em `src/styles/project-motion.css`, um `::after` absoluto sobre o conteúdo de cada card aplica um gradiente cinza-chumbo a preto com `opacity: var(--card-shade, 0)`, sem tintura azul. Ele fica abaixo do card seguinte por causa do `z-index` da pilha, não intercepta ponteiro e desaparece quando a preferência de movimento reduzido é ativada. O último card nunca é ultrapassado e permanece sem sombreamento.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Conferência em 1440×900 com Playwright: `--card-shade` foi `0.000` com `#crypto` no topo, `0.978` ao levar `#whatsapp` ao topo e `1.000` no card do BeeThere; a opacidade calculada do `::after` acompanhou esses valores. Novo teste E2E cobre a progressão. Entrega local, sem publicação.

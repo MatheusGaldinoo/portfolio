@@ -243,6 +243,17 @@ test('cards se sobrepõem como pastas e todos usam a altura do BeeThere', async 
   await expect.poll(async () => cards.evaluateAll(nodes => new Set(nodes.map(node => Math.round(node.getBoundingClientRect().height))).size)).toBe(1);
 });
 
+test('card ultrapassado ganha sombra progressiva', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/#crypto');
+  const crypto = page.locator('#crypto');
+  const shade = () => crypto.evaluate(el => parseFloat(getComputedStyle(el).getPropertyValue('--card-shade')) || 0);
+  await expect.poll(shade).toBeLessThan(0.2);
+  await page.locator('#whatsapp').evaluate(el => el.scrollIntoView({ block: 'start', behavior: 'instant' }));
+  await expect.poll(shade).toBeGreaterThan(0.9);
+  expect(Number(await crypto.evaluate(el => getComputedStyle(el, '::after').opacity))).toBeGreaterThan(0.9);
+});
+
 for (const width of [375, 1440]) {
   test(`prévia com #inicio e clique neutro em ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 900 });

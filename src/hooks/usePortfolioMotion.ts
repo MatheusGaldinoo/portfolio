@@ -1,14 +1,17 @@
 import { useEffect, type RefObject } from 'react';
+import { attachProjectCardShade } from './projectCardShade';
 
 export function usePortfolioMotion(main: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const root = main.current;
     if (!root) return;
     const motion = matchMedia('(prefers-reduced-motion: no-preference)');
+    let active = true;
     let cleanup: (() => void) | undefined;
     function update() {
       cleanup?.();
       if (!motion.matches || !root) return;
+      active = true;
       const reveals = new Set<Animation>();
       const observer = new IntersectionObserver(entries => {
         for (const { target, isIntersecting } of entries) {
@@ -40,7 +43,12 @@ export function usePortfolioMotion(main: RefObject<HTMLElement | null>) {
         list.style.setProperty('--project-card-height', `${height}px`);
       };
       syncCardHeight();
-      void document.fonts.ready.then(() => { if (active) syncCardHeight(); });
+      const shade = attachProjectCardShade(root);
+      void document.fonts.ready.then(() => {
+        if (!active) return;
+        syncCardHeight();
+        shade.refresh();
+      });
       let lastWidth = 0;
       const listSize = new ResizeObserver(entries => {
         const width = entries[0].contentRect.width;
@@ -56,7 +64,6 @@ export function usePortfolioMotion(main: RefObject<HTMLElement | null>) {
       touchScroll.observe(list);
       const sizes = new ResizeObserver(syncCardHeight);
       sizes.observe(list);
-      let active = true;
       let detach: (() => void) | undefined;
       if (!CSS.supports('animation-timeline: view()')) {
         void import('./scrollFallback').then(({ attachScrollFallback }) => {
@@ -65,6 +72,7 @@ export function usePortfolioMotion(main: RefObject<HTMLElement | null>) {
       }
       cleanup = () => {
         active = false;
+        shade.detach();
         detach?.();
         listSize.disconnect();
         sizes.disconnect();

@@ -288,6 +288,18 @@
     position: relative;
     top: auto;
   }
+
+  /* O card ultrapassado recua: a sombra sobe de baixo, onde o próximo o encobre. */
+  .featured-projects .project-list>*::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(24, 24, 24, .35), rgba(0, 0, 0, .72));
+    opacity: var(--card-shade, 0);
+  }
 }
 
 @media (max-width: 767px) {
