@@ -19,7 +19,7 @@ export function textReveal02(
     chars: { duration: 0.04, stagger: 0.03, ease: "power1.out" },
     scrollStart: "top 85%",
     scrubStart: "top 80%",
-    scrubEnd: "top 20%",
+    scrubEnd: "center center",
     once: false,
     markers: false,
   } as const;
