@@ -39,7 +39,7 @@ function Content({ children }: { children: ReactNode }) {
       {/* Specular border: top-left and bottom-right light refraction */}
       <span
         aria-hidden
-        className="glass-cta-border pointer-events-none absolute inset-0 rounded-full p-px opacity-90 transition-opacity duration-300 group-hover:opacity-100"
+        className="glass-cta-border pointer-events-none absolute inset-0 rounded-full opacity-90 transition-opacity duration-300 group-hover:opacity-100"
       />
       {/* Soft inner volume */}
       <span
