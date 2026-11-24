@@ -382,3 +382,11 @@ Validação: `npm run build` aprovado (TypeScript e Vite). Conferência em naveg
 O usuário pediu uma frase mais representativa e pessoal no lugar de “O código começa com uma pergunta.”. `src/sections/ClosingStatement.tsx` passou a usar “Eu pergunto, testo, construo e entrego.”, com a mesma quebra em duas linhas e a segunda metade em laranja, preservando o scrub de cores. A escolha retoma o que o portfólio já mostra: pesquisa e validação no BeeThere e no TEAjudo, implementação nos projetos de IA e a responsabilidade pela entrega descrita em “Como trabalho”. README atualizado; o registro histórico de 21 de novembro manteve a frase antiga como parte do relato daquela data.
 
 Validação: `npm run build` aprovado (TypeScript e Vite). Entrega local, sem commit ou publicação.
+
+## 23 de novembro de 2026 — novo ajuste em “Como trabalho”
+
+O usuário pediu para levar a pessoa que estava ao centro da foto mais para a direita, afastar as duas descrições e sintetizar o texto. Em `src/sections/WorkingAtVirtus.css`, o transform do fundo passou de `translateX(1.5%) scale(1.03)` para `translateX(5%) scale(1.11)`: o deslocamento chega a 72 px em 1440 px e 18,75 px em 375 px, com escala suficiente para não revelar a borda esquerda. O `row-gap` e o `padding-top` da divisória subiram de 32 px para 48 px no desktop e de 24 px para 32 px no mobile.
+
+Os parágrafos em `src/sections/WorkingAtVirtus.tsx` foram enxugados sem remover fatos: “trabalho com” virou “atuo com” e “responsabilidades compartilhadas”, “responsabilidades divididas”; no segundo bloco, “Uso Codex, OpenCode e Antigravity com prompt engineering” virou “Com Codex, OpenCode e Antigravity, uso prompt engineering”, e “reviso o código e testo: a validação e a responsabilidade pela entrega continuam comigo” virou “reviso e testo o código: validação e responsabilidade pela entrega continuam comigo”. Os destaques em Scrum, soft skills, Antigravity, prompt engineering e responsabilidade pela entrega foram preservados.
+
+Validação: `npm run build` aprovado (TypeScript e Vite). Conferência em navegador a 1440×900 e 375×812: transform `matrix(1.11, 0, 0, 1.11, 72, 0)` e `matrix(1.11, 0, 0, 1.11, 18.75, 0)`, gap/padding de 48 px e 32 px, nenhum overflow horizontal e WebP de fundo carregando. Entrega local, sem publicação.
